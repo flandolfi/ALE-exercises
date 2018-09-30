@@ -9,41 +9,41 @@ the University of Pisa.
 
 The exercises will divided as the chapters in Prof. Ferragina's lecture notes:
 
-  1. [**Prologue**](https://github.com/flandolfi/ALE-exercises/01_prologue):
+  1. [**Prologue**](https://github.com/flandolfi/ALE-exercises/tree/master/01_prologue):
   The RAM Model and the EM model.
-  2. [**A Warm Up!**](https://github.com/flandolfi/ALE-exercises/02_a_warm_up):
+  2. [**A Warm Up!**](https://github.com/flandolfi/ALE-exercises/tree/master/02_a_warm_up):
   The maximum sub-array problem.
-  3. [**Random Sampling**](https://github.com/flandolfi/ALE-exercises/03_random_sampling):
+  3. [**Random Sampling**](https://github.com/flandolfi/ALE-exercises/tree/master/03_random_sampling):
   Disk model and known sequence length. Streaming model and known sequence
   length. Streaming model and unknown sequence length.
-  4. [**List Ranking**](https://github.com/flandolfi/ALE-exercises/04_list_ranking): 
+  4. [**List Ranking**](https://github.com/flandolfi/ALE-exercises/tree/master/04_list_ranking): 
   The pointer-jumping technique. Parallel algorithm simulation in a 2-level
   memory. A Divide&Conquer approach.
-  5. [**Sorting Atomic Items**](https://github.com/flandolfi/ALE-exercises/05_sorting_atomic_items):
+  5. [**Sorting Atomic Items**](https://github.com/flandolfi/ALE-exercises/tree/master/05_sorting_atomic_items):
   The merge-based sorting paradigm. Lower bounds. The distribution-based sorting
   paradigm. Sorting with multi-disks.
-  6. [**Set Intersection**](https://github.com/flandolfi/ALE-exercises/06_set_intersection):
+  6. [**Set Intersection**](https://github.com/flandolfi/ALE-exercises/tree/master/06_set_intersection):
   Mutual partitioning. Doubling search.
-  7. [**Sorting Strings**](https://github.com/flandolfi/ALE-exercises/07_sorting_strings):
+  7. [**Sorting Strings**](https://github.com/flandolfi/ALE-exercises/tree/master/07_sorting_strings):
   A lower bound. RadixSort. Multi-key Quicksort. Some observations on the
   I/O-model.
-  8. [**The Dictionary Problem**](https://github.com/flandolfi/ALE-exercises/08_the_dictionary_problem):
+  8. [**The Dictionary Problem**](https://github.com/flandolfi/ALE-exercises/tree/master/08_the_dictionary_problem):
   Direct-address tables. Hash Tables. Universal hashing. Perfect hashing,
   minimal, ordered. A simple perfect hash table. Cuckoo hashing. Bloom filters.
-  9. [**Searching Strings by Prefix**](https://github.com/flandolfi/ALE-exercises/09_searching_strings_by_prefix):
+  9. [**Searching Strings by Prefix**](https://github.com/flandolfi/ALE-exercises/tree/master/09_searching_strings_by_prefix):
   Array of string pointers. Interpolation search. Locality-preserving front
   coding. Compacted Trie. Patricia Trie. Managing Huge Dictionaries.
-  10. [**Searching Strings by Substring**](https://github.com/flandolfi/ALE-exercises/10_searching_strings_by_substring):
+  10. [**Searching Strings by Substring**](https://github.com/flandolfi/ALE-exercises/tree/master/10_searching_strings_by_substring):
   Notation and terminology. The Suffix Array. The Suffix Tree. Some interesting
   problems.
-  11. [**Integer Coding**](https://github.com/flandolfi/ALE-exercises/11_integer_coding):
+  11. [**Integer Coding**](https://github.com/flandolfi/ALE-exercises/tree/master/11_integer_coding):
   Elias codes: γ and δ. Rice code. PForDelta code. Variable-byte code and
   (s,c)-dense codes. Interpolative code. Elias-Fano code. Concluding remarks.
-  12. [**Statistical Coding**](https://github.com/flandolfi/ALE-exercises/12_statistical_coding):
+  12. [**Statistical Coding**](https://github.com/flandolfi/ALE-exercises/tree/master/12_statistical_coding):
   Huffman coding. Arithmetic Coding. Prediction by Partial Matching.
-  13. [**Dictionary-Based Compressors**](https://github.com/flandolfi/ALE-exercises/13_dictionary_based_compressors):
+  13. [**Dictionary-Based Compressors**](https://github.com/flandolfi/ALE-exercises/tree/master/13_dictionary_based_compressors):
   LZ77. LZ78. LZW. On the optimality of compressors.
-  14. [**The Borrows-Wheeler Transform**](https://github.com/flandolfi/ALE-exercises/14_the_borrows_wheeler_transform):
+  14. [**The Borrows-Wheeler Transform**](https://github.com/flandolfi/ALE-exercises/tree/master/14_the_borrows_wheeler_transform):
   The Burrows-Wheeler Transform. Two other simple transforms. The `bzip`
   compressor. On compression boosting. On compressed indexing.
 
