@@ -16,7 +16,7 @@ The exercises will divided as the chapters in Prof. Ferragina's lecture notes:
   3. [**Random Sampling**](https://github.com/flandolfi/ALE-exercises/tree/master/03_random_sampling):
   Disk model and known sequence length. Streaming model and known sequence
   length. Streaming model and unknown sequence length.
-  4. [**List Ranking**](https://github.com/flandolfi/ALE-exercises/tree/master/04_list_ranking): 
+  4. [**List Ranking**](https://github.com/flandolfi/ALE-exercises/tree/master/04_list_ranking):
   The pointer-jumping technique. Parallel algorithm simulation in a 2-level
   memory. A Divide&Conquer approach.
   5. [**Sorting Atomic Items**](https://github.com/flandolfi/ALE-exercises/tree/master/05_sorting_atomic_items):
@@ -70,7 +70,7 @@ page](https://github.com/flandolfi/ALE-exercises/releases).
 You can otherwise build it yourself, using the following commands:
 
     git clone https://github.com/flandolfi/ALE-exercises.git
-    cd IR-exercises/
+    cd ALE-exercises/
     make
 
 ## How to contribute ##
