@@ -47,6 +47,14 @@ The exercises will divided as the chapters in Prof. Ferragina's lecture notes:
   The Burrows-Wheeler Transform. Two other simple transforms. The `bzip`
   compressor. On compression boosting. On compressed indexing.
 
+**Extras**:
+
+  1. [**Minimum Spanning Tree**](https://github.com/flandolfi/ALE-exercises/tree/master/E1_minimum_spanning_tree):
+  BFS and DFS visits, Minimum Spanning Tree problem: Kruskal and Prim algorithms
+  and analysis. Algorithms for external and semi-external computation of MST.
+  2. [**Randomized Data Structures**](https://github.com/flandolfi/ALE-exercises/tree/master/E2_randomised_data_structures):
+  Treaps and Skip lists.
+
 ## Topics covered by the exams ##
 
 In this table is shown which kind of exercises you may find in a specific test
@@ -58,9 +66,56 @@ misclassified.
 ***WARNING***: Every exam taken before 2016 may contain exercises form a
 previous programme.
 
-| Test Date                                                                                                  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12| 13| 14| Status                                                        |
-|:----------------------------------------------------------------------------------------------------------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-------------------------------------------------------------:|
-| [TODO]()                                                                                                   | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| Test Date                                                                                                         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12| 13| 14| E1| E2| Status                                                        |
+|:-----------------------------------------------------------------------------------------------------------------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-------------------------------------------------------------:|
+| [04/09/18](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae180904.doc)  |   |   |   |   |   |   | ● | ● | ● |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [16/07/18](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae180716.doc)  |   |   | ● |   | ● |   |   |   |   |   |   |   |   | ● |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [15/06/18](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae180615.doc)  |   |   | ● |   | ● |   |   | ● |   |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [15/02/18](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae180215.doc)  |   |   |   |   | ● | ● |   | ● |   |   | ● |   |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [15/01/18](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae180115.doc)  |   |   |   |   | ● |   |   |   |   |   | ● | ● |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [18/12/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae171218.doc)  |   |   |   |   |   |   |   |   | ● | ● | ● | ● | ● |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [30/10/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/ae171030.doc)  |   |   | ● | ● |   | ● | ● |   |   |   |   |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [05/09/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2016/ae170905.doc)  |   |   |   |   |   |   |   | ● |   |   |   |   | ● | ● | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [27/07/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2016/ae170727.doc)  |   |   | ● |   |   |   |   |   | ● |   |   | ● |   | ● | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [29/06/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2016/ae170629.doc)  |   |   |   |   |   | ● |   |   |   | ● | ● |   |   |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [12/06/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2016/ae170612.doc)  |   |   |   |   |   |   |   | ● |   |   | ● |   | ● | ● | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [12/01/17](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2015/ae170112.doc)  |   |   |   |   | ● |   |   | ● |   |   |   | ● |   |   | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [02/09/16](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2015/ae160902.doc)  |   |   |   |   | ● | ● |   |   |   | ● |   |   |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [19/07/16](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2015/ae160719.doc)  |   |   | ● | ● |   |   |   |   |   |   |   |   |   | ● |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [27/06/16](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2015/ae160627.doc)  |   |   | ● |   | ● |   |   | ● |   |   |   |   |   | ● |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [01/02/16](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2014/ae160201.doc)  |   |   | ● |   |   |   |   | ● |   | ● |   |   |   | ● | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [11/01/16](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2014/ae160111.doc)  |   |   |   |   | ● |   | ● |   |   | ● | ● |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [10/09/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2014/ae150910.doc)  |   |   |   |   | ● |   |   | ● |   | ● |   |   | ● |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [20/07/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2014/ae150720.doc)  |   |   |   |   | ● |   |   | ● |   |   |   |   |   |   | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [29/06/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2014/ae150629.doc)  |   |   |   |   | ● |   |   |   |   |   |   | ● |   |   | ● | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [08/04/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae150408.doc)  |   |   |   |   | ● |   |   | ● | ● |   |   |   |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [09/02/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae150209.docx) |   |   |   |   |   |   |   | ● |   | ● |   |   |   |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [16/01/15](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae150116.doc)  |   | ● |   |   |   |   | ● | ● |   | ● |   | ● |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [29/07/14](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae140729.doc)  |   |   |   |   | ● |   |   |   |   | ● |   |   |   | ● |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [30/06/14](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae140630.doc)  |   |   |   | ● | ● |   | ● |   |   |   |   |   | ● |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [09/06/14](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2013/ae140609.doc)  |   |   |   |   | ● |   |   | ● |   |   |   | ● |   |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [29/01/14](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae140129.doc)  |   |   |   |   | ● |   | ● | ● | ● |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [08/01/14](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae140108.doc)  |   |   | ● |   |   |   |   | ● | ● |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [12/09/13](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae130912.docx) |   |   |   |   | ● |   |   | ● |   | ● |   |   |   |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [16/07/13](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae130716.docx) |   |   |   |   | ● |   |   |   |   | ● | ● | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [25/06/13](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae130625.docx) |   |   |   |   |   |   | ● |   |   |   |   |   |   |   | ● |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [04/06/13](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2012/ae130604.docx) |   |   | ● |   | ● |   | ● | ● |   |   |   |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [03/09/12](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2011/ae120903.doc)  |   |   |   | ● |   |   |   | ● |   | ● |   | ● | ● |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [23/07/12](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2011/ae120723.doc)  |   |   |   |   |   |   |   | ● |   | ● | ● |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [28/06/12](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2011/ae120628.doc)  |   |   | ● |   |   |   | ● |   |   |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [08/06/12](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2011/ae120608.doc)  |   |   |   |   |   |   | ● | ● | ● |   |   |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [28/09/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110928.doc)  |   |   |   |   |   |   | ● |   | ● |   |   | ● |   |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [01/09/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110901.doc)  |   |   |   |   | ● |   |   | ● | ● |   |   |   | ● | ● |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [20/07/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110720.doc)  |   |   | ● |   |   |   |   |   | ● | ● |   |   |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [24/06/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110624.doc)  |   |   |   |   |   |   |   | ● | ● |   |   |   | ● |   |   | ● |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [09/06/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110609.doc)  |   |   |   |   | ● |   |   | ● |   | ● |   |   |   | ● |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [28/02/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110228.doc)  |   |   |   |   | ● |   |   | ● |   |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [01/02/11](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2010/ae110201.doc)  |   |   |   |   |   |   | ● | ● |   |   |   |   | ● | ● |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [15/07/10](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2009/ae100715.pdf)  |   |   |   |   |   |   |   | ● |   | ● | ● |   | ● |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [22/06/10](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2009/ae100622.pdf)  |   |   |   | ● |   |   |   |   |   |   |   |   | ● |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [01/06/10](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2009/ae100601.pdf)  |   |   |   |   |   |   |   |   |   |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [11/02/10](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2009/ae100211.pdf)  |   |   |   |   |   |   |   | ● |   |   |   | ● |   |   |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
+| [11/01/10](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2009/ae100111.pdf)  |   |   |   |   |   |   | ● | ● |   |   |   |   |   | ● |   |   |![Status](https://img.shields.io/badge/Solved-0%25-red.svg)    |
 
 ## Solutions file ##
 
@@ -96,6 +151,11 @@ Thank you for your contribution! :blush:
 
   - Prof. Ferragina's [lecture notes](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/main_2.pdf)
   (the main reference of the course).
+  - ["Introduction to Algorithms"](https://mitpress.mit.edu/books/introduction-algorithms),
+  by T. H. Cormen, C. E. Leiserson and R. L. Rivest (not freely available
+  online).
+  - [Video lectures of Introduction to Algorithms](http://videolectures.net/mit6046jf05_introduction_algorithms/),
+  by E. Demaine and C. E. Leiserson.
   - ["Compact Data Structures"](https://www.dcc.uchile.cl/~gnavarro/CDSbook/),
   by Gonzalo Navarro. A beautiful book containing some relevant topics of the
   course (not freely available online).
