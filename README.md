@@ -152,12 +152,11 @@ Thank you for your contribution! :blush:
   - Prof. Ferragina's [lecture notes](http://didawiki.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/ae/ae2017/main_2.pdf)
   (the main reference of the course).
   - ["Introduction to Algorithms"](https://mitpress.mit.edu/books/introduction-algorithms),
-  by T. H. Cormen, C. E. Leiserson and R. L. Rivest (not freely available
-  online).
+  by T. H. Cormen, C. E. Leiserson and R. L. Rivest.
   - [Video lectures of Introduction to Algorithms](http://videolectures.net/mit6046jf05_introduction_algorithms/),
   by E. Demaine and C. E. Leiserson.
   - ["Compact Data Structures"](https://www.dcc.uchile.cl/~gnavarro/CDSbook/),
   by Gonzalo Navarro. A beautiful book containing some relevant topics of the
-  course (not freely available online).
+  course.
   - If you are following also the Information Retrieval course at University of
   Pisa, check out [this other exercises repository](https://github.com/flandolfi/IR-exercises)!
