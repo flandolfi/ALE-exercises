@@ -2,8 +2,7 @@
 
 This repository contains the exercises (and some of their solutions) of various
 test exams of the [Algorithm Engineering (ALE)](http://didawiki.di.unipi.it/doku.php/magistraleinformaticanetworking/ae/start)
-course, taught by [Prof. Paolo Ferragina](http://www.di.unipi.it/~ferragin/) at
-the University of Pisa.
+course, taught by [Prof. Paolo Ferragina](http://www.di.unipi.it/~ferragin/).
 
 ## Topics of the course ##
 
