@@ -2,7 +2,7 @@ NAME = ALE-exercises
 SRC = ${NAME}.tex
 OBJ = ${NAME}.pdf
 OUT_DIR = out
-CMD = pdflatex
+CMD = lualatex
 OPTS = -interaction=nonstopmode -jobname=${NAME} -output-directory=${OUT_DIR}
 GLOB = all.tex
 
