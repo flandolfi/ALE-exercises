@@ -1,0 +1,43 @@
+\exercise
+
+Comment on the correctness of the algorithm that solves in time $O(n)$ the
+maximum sub-array problem.
+
+\solution
+
+The linear-time algorithm for the maximum sub-array problem is given by
+Algorithm~\ref{alg:maxsum}. To prove its correctness, we have to exploit the
+following properties: assuming $D[b_o, s_o]$ the maximum sub-array of $D[1, n]$,
+%
+\begin{enumerate}
+  \item The sum of the elements in a sub-array $D[x, b_o - 1]$, with $x < b_o$,
+  cannot be (strictly) positive.
+  \item The sum of the elements in a sub-array $D[b_o, y]$, with $y \le s_o$,
+  cannot be (strictly) negative.
+\end{enumerate}
+%
+The first property holds since, otherwise, $D[x, s_o]$ would be the maximum
+sub-array and this would contradict our assumption. Analogously, also the second
+property holds since, otherwise, $D[y~+~1,~s_o]$ would be the maximum sub-array,
+contradicting our assumption. Given these two properties,
+Algorithm~\ref{alg:maxsum} is correct since, when $s = b_o - 1$, the condition
+at line 7 will reset $b$ to $b_o$. Then, for all $s \in [b_o, s_o]$, the same
+condition will never be satisfied. Eventually, when $s = s_o$, we will have
+$MaxSum = TmpSum = \sum_{i \in [b_o, s_o]} D[i]$.
+%
+\begin{algorithm}[h]
+\caption{Maximum sub-array algorithm}\label{alg:maxsum}
+\begin{algorithmic}[1]
+\State $MaxSum \gets -\infty$, $TmpSum \gets 0$, $b \gets 1$
+\For{$s \in \left[1, n\right]$}
+\State $TmpSum \gets TmpSum + D[s]$
+\If{$MaxSum < TmpSum$}
+\State $MaxSum \gets TmpSum$, $b_o \gets b$, $s_o \gets s$
+\EndIf
+\If{$TmpSum < 0$}
+\State $TmpSum \gets 0$, $b \gets s + 1$
+\EndIf
+\EndFor
+\State \Return $\langle MaxSum,\ b_o,\ s_o \rangle$
+\end{algorithmic}
+\end{algorithm}

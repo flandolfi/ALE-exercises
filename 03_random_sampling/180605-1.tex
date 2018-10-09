@@ -1,0 +1,19 @@
+\exercise
+
+Simulate Algorithm~\ref{alg:reservoir} by drawing $m = 2$ items from a sequence
+of length $n = 8$: $[a, b, c, d, e, f, g, h]$, and assuming that at every step
+the random integers extracted by the algorithm are $[3, 1, 2, 2, 1, 5]$.
+
+\solution
+
+\begin{enumerate}[\bf a.]
+  \setcounter{enumi}{2}
+  \item $R = [a, b],\ h = 3 > m$
+  \item $R = [a, b],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf d}$
+  \item $R = [d, b],\ h = 2 \le m \Longrightarrow R[h] \gets \text{\bf e}$
+  \item $R = [d, e],\ h = 2 \le m \Longrightarrow R[h] \gets \text{\bf f}$
+  \item $R = [d, f],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf g}$
+  \item $R = [g, f],\ h = 5 > m$
+\end{enumerate}\
+%
+The selected elements are $R = [ g,\ f ]$.

@@ -1,0 +1,45 @@
+\exercise
+
+\begin{enumerate}
+  \item Write the pseudo-code of the algorithm that random samples $m$ items
+  from a sequence of \emph{known length} $n$ by means of a scanning approach.
+  \item Simulate the algorithm of point 1 by drawing $m = 2$ items from a
+  sequence of length $n = 8$: $[a, b, c, d, e, f, g, h]$, and assuming that at
+  every step the probabilities $p$ drawn by the algorithm are $[0.5, 0.5, 0,
+  0.5, 1, 0.1, 1]$.
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item Algorithm~\ref{alg:scanning} shows the pseudo-code of the \emph{scanning
+  and selecting} algorithm, applied to a given sequence $S[1, n]$.
+
+  \item \begin{enumerate}[\bf a.]
+    \item $s = 0,\ j = 1,\ p = 0.5 > \frac{m-s}{n-j+1} = \sfrac{1}{4}$
+    \item $s = 0,\ j = 2,\ p = 0.5 > \frac{m-s}{n-j+1} = \sfrac{2}{7}$
+    \item $s = 0,\ j = 3,\ p = 0\phantom{.5} \le \frac{m-s}{n-j+1} = \sfrac{1}{3} \Longrightarrow \text{Select \bf c}$
+    \item $s = 1,\ j = 4,\ p = 0.5 > \frac{m-s}{n-j+1} = \sfrac{1}{5}$
+    \item $s = 1,\ j = 5,\ p = 1\phantom{.5} > \frac{m-s}{n-j+1} = \sfrac{1}{4}$
+    \item $s = 1,\ j = 6,\ p = 0.1 \le \frac{m-s}{n-j+1} = \sfrac{1}{3} \Longrightarrow \text{Select \bf f}$
+    \item $s = 2,\ j = 7,\ p = 1\phantom{.5} > \frac{m-s}{n-j+1} = 0$
+  \end{enumerate}
+  %
+  The selected elements are $\{ c,\ f \}$.
+
+\end{enumerate}
+%
+\begin{algorithm}[h]
+\caption{Scanning and selecting}\label{alg:scanning}
+\begin{algorithmic}[1]
+\State $s \gets 0$
+\For{$j \in \left[1, n\right]$}
+  \State $p \gets \text{\sc Random}(0, 1)$
+  \If{$p \le \frac{m-s}{n-j+1}$}
+  \State Select $S[j]$
+  \State $s \gets s + 1$
+  \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}

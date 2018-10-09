@@ -1,0 +1,68 @@
+\exercise
+
+Given a sequence S of items and an integer $m < n/2$,
+%
+\begin{enumerate}
+  \item show the pseudo-code of the reservoir sampling algorithm,
+  \item prove its correctness (i.e. it does a uniform sampling),
+  \item simulate its execution over the sequence: $[a, b, c, d, e, f]$ by
+  assuming $m=2$ and that the random generator produces the sequence $[1, 3, 2,
+  1]$.
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item Algorithm~\ref{alg:reservoir} shows the pseudo-code of the
+  \emph{reservoir sampling} algorithm, applied to a given sequence $S[1, n]$.
+
+  \item Its correctness can be proven by induction:
+  %
+  \begin{description}
+
+    \item[Base case.] Every of the first $m$ elements is picked, so the base
+    case is satisfied, since the probability of being picked is $p =
+    \frac{m}{m} = 1$.
+
+    \item[Inductive case.] Assuming every of the first $n - 1$ elements has been
+    selected with probability $p = \frac{m}{n - 1}$, the uniform sampling
+    holds, since
+    %
+    \begin{align*}
+      \mathbb{P}\left[ S[j] \in R \text{ after } n \text{ items} \right] =&\
+      \mathbb{P}\left[ S[j] \in R \text{ after } n - 1 \text{ items} \right]
+      \times \Big( \mathbb{P}\left[ S[n] \text{ is not picked} \right] \\
+      & + \mathbb{P}\left[ S[n] \text{ is picked} \right] \times
+      \mathbb{P}\left[ S[j] \text{ is not removed from } R \right] \Big)\\
+      =&\ \frac{m}{n - 1} \times \left( \left(1 - \frac{m}{n} \right) +
+      \left(\frac{m}{n} \times \frac{m - 1}{m} \right)\right) \\
+      =&\ \frac{m}{n - 1} \times \frac{n - 1}{n} = \frac{m}{n}
+    \end{align*}
+
+  \end{description}
+
+  \item \begin{enumerate}[\bf a.]
+    \setcounter{enumii}{2}
+    \item $R = [a, b],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf c}$
+    \item $R = [c, b],\ h = 3 > m$
+    \item $R = [c, b],\ h = 2 \le m \Longrightarrow R[h] \gets \text{\bf e}$
+    \item $R = [c, e],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf f}$
+  \end{enumerate}\
+  %
+  The selected elements are $R = [ f,\ e ]$.
+
+\end{enumerate}
+%
+\begin{algorithm}[h]
+\caption{Reservoir sampling}\label{alg:reservoir}
+\begin{algorithmic}[1]
+\State $R[1, m] \gets S[1, m]$
+\For{$j \in \left[m + 1, n\right]$}
+  \State $h \gets \text{\sc Random}(1, j)$
+  \If{$h \le m$}
+  \State $R[h] \gets S[j]$
+  \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}

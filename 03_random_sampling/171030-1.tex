@@ -1,0 +1,21 @@
+\exercise
+
+Simulate Algorithm~\ref{alg:reservoir} by drawing $m = 3$ items from a sequence
+of length $n = 9$: $[a, b, c, d, e, f, g, h, i]$, assuming that the random
+integers extracted by the algorithm are $[2, 4, 1, 2, 3, 1, 5]$\footnote{This
+may be a replication error from a previous exercise: since $m = 3$, the last 5
+in the sequence will never be extracted.}.
+
+\solution
+
+\begin{enumerate}[\bf a.]
+  \setcounter{enumi}{3}
+  \item $R = [a, b, c],\ h = 2 \le m \Longrightarrow R[h] \gets \text{\bf d}$
+  \item $R = [a, d, c],\ h = 4 > m$
+  \item $R = [a, d, c],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf f}$
+  \item $R = [f, d, c],\ h = 2 \le m \Longrightarrow R[h] \gets \text{\bf g}$
+  \item $R = [f, g, c],\ h = 3 \le m \Longrightarrow R[h] \gets \text{\bf h}$
+  \item $R = [f, g, h],\ h = 1 \le m \Longrightarrow R[h] \gets \text{\bf i}$
+\end{enumerate}\
+%
+The selected elements are $R = [ i,\ g,\ h ]$.
