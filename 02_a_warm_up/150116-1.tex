@@ -6,7 +6,7 @@ maximum sub-array problem.
 \solution
 
 The linear-time algorithm for the maximum sub-array problem is given by
-Algorithm~\ref{alg:maxsum}. To prove its correctness, we have to exploit the
+\autoref{alg:maxsum}. To prove its correctness, we have to exploit the
 following properties: assuming $D[b_o, s_o]$ the maximum sub-array of $D[1, n]$,
 %
 \begin{enumerate}
@@ -20,7 +20,7 @@ The first property holds since, otherwise, $D[x, s_o]$ would be the maximum
 sub-array and this would contradict our assumption. Analogously, also the second
 property holds since, otherwise, $D[y~+~1,~s_o]$ would be the maximum sub-array,
 contradicting our assumption. Given these two properties,
-Algorithm~\ref{alg:maxsum} is correct since, when $s = b_o - 1$, the condition
+\autoref{alg:maxsum} is correct since, when $s = b_o - 1$, the condition
 at line 7 will reset $b$ to $b_o$. Then, for all $s \in [b_o, s_o]$, the same
 condition will never be satisfied. Eventually, when $s = s_o$, we will have
 $MaxSum = TmpSum = \sum_{i \in [b_o, s_o]} D[i]$.
