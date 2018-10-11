@@ -1,25 +1,26 @@
 \exercise
 
 The following linked list L is expressed as a sequence of pairs $(i, succ(i))$
-and item 4 is the head of the list: $L = \{ (1,6), (2,5), (3,0), (4,2), (5,1),
-(6,3) \}$\footnote{We can assume the pair $(3, 0)$ represents the last element
-of the list (with 0 as {\tt NULL} or ``no successor''), thus will be represented
-from now on as $(3, 3)$, as in Prof. Ferragina's lecture notes.}. Show all the
-steps needed to simulate the operation $succ(i) = succ(succ(i))$ of the Pointer
-Jumping technique in the 2-levels model using a sequence of {\tt sort} and {\tt
-scan}.
+and item 4 is the head of the list: $\mathcal{L} = \{ (1,6), (2,5), (3,0),
+(4,2), (5,1), (6,3) \}$\footnote{We can assume the pair $(3, 0)$ represents the
+last element of the list (with 0 as {\tt NULL} or ``no successor''), thus will
+be represented from now on as $(3, 3)$, as in Prof. Ferragina's lecture notes.}.
+Show all the steps needed to simulate the operation $succ(i) = succ(succ(i))$ of
+the Pointer Jumping technique in the 2-levels model using a sequence of {\tt
+sort} and {\tt scan}.
 
 \solution
 
-\autoref{fig:list1} shows the the initial state of the list $L$. To simulate the
-Pointer Jumping technique in the 2-levels model we first have to store the list
-as \emph{triples} $\langle i, succ(i), rank(i) \rangle$, initializing $rank(i) =
-0$ if $succ(i) = i$ and $rank(i) = 1$ otherwise, as in \autoref{tab:list}. Then,
-we store again the same list as \emph{quadruples} such as $\langle i, succ(i),
-0, 0 \rangle$, wher the third and fourth component of the tuple are temporary
-placeholders for the values of $rank(succ(i))$ and $succ(succ(i))$. Then proceed
-updating the value of $rank(i)$ (in the triples) using a sequence of {\tt sort}
-and {\tt scan} primitives, as follows:
+\autoref{fig:list1} shows the the initial state of the list $\mathcal{L}$. To
+simulate the Pointer Jumping technique in the 2-levels model we first have to
+store the list as \emph{triples} in the form of $\langle i, succ(i), rank(i)
+\rangle$, initializing $rank(i) = 0$ if $succ(i) = i$ and $rank(i) = 1$
+otherwise, as in \autoref{tab:list}. We store again the same list as
+\emph{quadruples} such as $\langle i, succ(i), 0, 0 \rangle$, where the third
+and fourth components of each tuple are temporary placeholders for the values of
+$rank(succ(i))$ and $succ(succ(i))$, respectively. Then we proceed updating the
+value of $rank(i)$ (in the triples) using a sequence of {\tt sort} and {\tt
+scan} primitives, as follows:
 %
 \begin{align*}
   \text{\bf 1. }
@@ -66,10 +67,7 @@ and {\tt scan} primitives, as follows:
     rank(4) + 1 = 2,\ succ(4) = 5 \\
     rank(5) + 1 = 2,\ succ(5) = 6 \\
     rank(6) + 0 = 1,\ succ(6) = 3 \\
-  \end{matrix}
-\end{align*}
-%
-\begin{align*}
+  \end{matrix} \\[0.5em]
   \text{\bf 2. }
   \begin{matrix}
     \langle 1, 3, 0, 0 \rangle \\
@@ -114,10 +112,7 @@ and {\tt scan} primitives, as follows:
     rank(4) + 2 = 4,\ succ(4) = 6 \\
     rank(5) + 1 = 3,\ succ(5) = 3 \\
     rank(6) + 0 = 1,\ succ(6) = 3 \\
-  \end{matrix}
-\end{align*}
-%
-\begin{align*}
+  \end{matrix} \\[0.5em]
   \text{\bf 3. }
   \begin{matrix}
     \langle 1, 3, 0, 0 \rangle \\
@@ -165,7 +160,31 @@ and {\tt scan} primitives, as follows:
   \end{matrix}
 \end{align*}
 %
-\begin{figure} [t]
+Notice that, whenever we performa a {\tt sort}, we operate only on the
+quadruples, while, whenever we perform a {\tt scan}, we operate both on the the
+triples and on the quadruples, in parallel. Eventually, $succ(i)$ will have the
+same value for each $i$, and the algorithm terminates. The final values of
+$rank(i)$ stored in the triples will be the result of the algorithm and we may
+throw away the contents of the quadruples.
+%
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cc|cccccc}
+                            & $i$       & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline\hline
+    \multirow{2}{*}{\bf 0.} & $succ(i)$ & 6 & 5 & 3 & 2 & 1 & 3 \\
+                            & $rank(i)$ & 1 & 1 & 0 & 1 & 1 & 1 \\ \hline
+    \multirow{2}{*}{\bf 1.} & $succ(i)$ & 3 & 1 & 3 & 5 & 6 & 3 \\
+                            & $rank(i)$ & 2 & 2 & 0 & 2 & 2 & 1 \\ \hline
+    \multirow{2}{*}{\bf 2.} & $succ(i)$ & 3 & 3 & 3 & 6 & 3 & 3 \\
+                            & $rank(i)$ & 2 & 4 & 0 & 4 & 3 & 1 \\ \hline
+    \multirow{2}{*}{\bf 3.} & $succ(i)$ & 3 & 3 & 3 & 3 & 3 & 3 \\
+                            & $rank(i)$ & 2 & 4 & 0 & 5 & 3 & 1 \\ \hline
+  \end{tabular}
+  \caption{Memory representation of $\mathcal{L}$.}
+  \label{tab:list}
+\end{table}
+%
+\begin{figure} [h]
   \begin{subfigure}{\linewidth}
     \centering
     \begin{tikzpicture}[node distance=1.5cm, every node/.append style={draw,circle}]
@@ -175,12 +194,12 @@ and {\tt scan} primitives, as follows:
       \node[right of=c] (d) {1};
       \node[right of=d] (e) {6};
       \node[right of=e] (f) {3};
-      \draw[->] (a) -- (b);
-      \draw[->] (b) -- (c);
-      \draw[->] (c) -- (d);
-      \draw[->] (d) -- (e);
-      \draw[->] (e) -- (f);
-      \path (f) edge[->, loop right] (f);
+      \draw[-latex] (a) -- (b);
+      \draw[-latex] (b) -- (c);
+      \draw[-latex] (c) -- (d);
+      \draw[-latex] (d) -- (e);
+      \draw[-latex] (e) -- (f);
+      \path (f) edge[-latex, loop right] (f);
     \end{tikzpicture}
     \caption{Initial state.}
     \label{fig:list1}
@@ -194,12 +213,12 @@ and {\tt scan} primitives, as follows:
       \node[right of=c] (d) {1};
       \node[right of=d] (e) {6};
       \node[right of=e] (f) {3};
-      \path (a) edge[->, out=-45, in=-135] (c);
-      \path (b) edge[->, out=-45, in=-135] (d);
-      \path (c) edge[->, out=-45, in=-135] (e);
-      \path (d) edge[->, out=-45, in=-135] (f);
-      \path (e) edge[->, out=-45, in=-135] (f);
-      \path (f) edge[->, loop right] (f);
+      \path (a) edge[-latex, out=-45, in=-135] (c);
+      \path (b) edge[-latex, out=-45, in=-135] (d);
+      \path (c) edge[-latex, out=-45, in=-135] (e);
+      \path (d) edge[-latex, out=-45, in=-135] (f);
+      \path (e) edge[-latex] (f);
+      \path (f) edge[-latex, loop right] (f);
     \end{tikzpicture}
     \caption{First step.}
     \label{fig:list2}
@@ -213,12 +232,12 @@ and {\tt scan} primitives, as follows:
       \node[right of=c] (d) {1};
       \node[right of=d] (e) {6};
       \node[right of=e] (f) {3};
-      \path (a) edge[->, out=-45, in=-135] (e);
-      \path (b) edge[->, out=-45, in=-135] (f);
-      \path (c) edge[->, out=-45, in=-135] (f);
-      \path (d) edge[->, out=-45, in=-135] (f);
-      \path (e) edge[->, out=-45, in=-135] (f);
-      \path (f) edge[->, loop right] (f);
+      \path (a) edge[-latex, out=-45, in=-135] (e);
+      \path (b) edge[-latex, out=-45, in=-135] (f);
+      \path (c) edge[-latex, out=-45, in=-135] (f);
+      \path (d) edge[-latex, out=-45, in=-135] (f);
+      \path (e) edge[-latex] (f);
+      \path (f) edge[-latex, loop right] (f);
     \end{tikzpicture}
     \caption{Second step.}
     \label{fig:list2}
@@ -232,33 +251,16 @@ and {\tt scan} primitives, as follows:
       \node[right of=c] (d) {1};
       \node[right of=d] (e) {6};
       \node[right of=e] (f) {3};
-      \path (a) edge[->, out=-45, in=-135] (f);
-      \path (b) edge[->, out=-45, in=-135] (f);
-      \path (c) edge[->, out=-45, in=-135] (f);
-      \path (d) edge[->, out=-45, in=-135] (f);
-      \path (e) edge[->, out=-45, in=-135] (f);
-      \path (f) edge[->, loop right] (f);
+      \path (a) edge[-latex, out=-45, in=-135] (f);
+      \path (b) edge[-latex, out=-45, in=-135] (f);
+      \path (c) edge[-latex, out=-45, in=-135] (f);
+      \path (d) edge[-latex, out=-45, in=-135] (f);
+      \path (e) edge[-latex] (f);
+      \path (f) edge[-latex, loop right] (f);
     \end{tikzpicture}
     \caption{Third step.}
     \label{fig:list3}
   \end{subfigure}
-  \caption{Graph representation of $L$.}
+  \caption{Graph representation of $\mathcal{L}$.}
   \label{fig:list}
 \end{figure}
-%
-\begin{table}[t]
-  \centering
-  \begin{tabular}{c|cccccc}
-    $i$          & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline\hline
-    $succ(i)$    & 6 & 5 & 3 & 2 & 1 & 3 \\
-    $rank(i)$    & 1 & 1 & 0 & 1 & 1 & 1 \\ \hline
-    $succ'(i)$   & 3 & 1 & 3 & 5 & 6 & 3 \\
-    $rank'(i)$   & 2 & 2 & 0 & 2 & 2 & 1 \\ \hline
-    $succ''(i)$  & 3 & 3 & 3 & 6 & 3 & 3 \\
-    $rank''(i)$  & 2 & 4 & 0 & 4 & 3 & 1 \\ \hline
-    $succ'''(i)$ & 3 & 3 & 3 & 3 & 3 & 3 \\
-    $rank'''(i)$ & 2 & 4 & 0 & 5 & 3 & 1 \\ \hline
-  \end{tabular}
-  \caption{Memory representation of $L$.}
-  \label{tab:list}
-\end{table}
