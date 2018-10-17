@@ -1,0 +1,82 @@
+\exercise
+
+Describe the Snow Plow algorithm, comment in which sorting algorithm can be used
+and what is the advantage possibly induced in that sorting algorithm. Finally
+simulate its working over the sequence 3, 10, 1, 6, 2, 5, 3, by showing the
+sorted blocks it forms with a memory capable to store $M = 2$ integers.
+
+\solution
+
+\begin{algorithm}[b]
+\caption{Snow Plow algorithm}\label{alg:snowplow}
+\begin{algorithmic}[1]
+\Require $\mathcal{U}$ unsorted array of $M$ items
+\State Build a min-heap $\mathcal{H}$ over $\mathcal{U}$'s items
+\State $\mathcal{U} \gets \emptyset$
+\While{$\mathcal{H} \neq \emptyset$}
+  \State $min \gets \min(\mathcal{H})$
+  \State Write $min$ in the output run
+  \State $next \gets$ next item from input sequence
+  \If{$next < min$}
+    \State Write $next$ in $\mathcal{U}$
+  \Else
+    \State Insert $next$ in $\mathcal{H}$
+  \EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+%
+The Snow Plow (\autoref{alg:snowplow}) creates an heap $\mathcal{H}$ over the
+(unsorted) elements present in memory. Then it stores in the output run the
+minimum of $\mathcal{H}$ ($min$) and loads in memory the next element of the
+input sequence ($next$). If $next$ is less than $min$, it will be stored in an
+unsorted auxiliary array $\mathcal{U}$, else it will be inserted in
+$\mathcal{H}$. This will be repeated until $\mathcal{H}$ is empty. The output
+run is still guaranteed to be sorted, and, exploiting the random distribution of
+the input sequence, it will be also larger than the actual size of the memory,
+since every new element of the sequence will be greater than the last minimum
+with a probability of $\sfrac{1}{2}$. This method virtually increases the size
+of $M$ by a factor of 2 (on average), thus lowering the I/O complexity of the
+mergesort from $O\big(\frac{n}{B}\log_2\frac{n}{M}\big)$ to
+$O\big(\frac{n}{B}\log_2\frac{n}{2M}\big)$ and saving 1 pass over the data.
+
+Given the sequence 3, 10, 1, 6, 2, 5, 3, and a memory size of $M = 2$, we start
+the algorithm with $\mathcal{U} = [3, 10]$ (the first 2 elements of the
+sequence). Then
+%
+\begin{description}
+
+  \item[Run 1.] We build $\mathcal{H}$ over $\mathcal{U}$, obtaining
+  $\mathcal{H} = [3, 10]$.
+  %
+  \begin{enumerate}
+
+    \item $min = 3,\ next = 1 < min \Longrightarrow \mathcal{H} = [10],\
+    \mathcal{U} = [1]$
+
+    \item $min = 10,\ next = 6 < min \Longrightarrow \mathcal{H} = [\,],\
+    \mathcal{U} = [1, 6]$
+
+  \end{enumerate}
+
+  \item[Run 2.] We build $\mathcal{H}$ over $\mathcal{U}$, obtaining
+  $\mathcal{H} = [1, 6]$.
+  %
+  \begin{enumerate}
+
+    \item $min = 1,\ next = 2 \ge min \Longrightarrow \mathcal{H} = [2, 6],\
+    \mathcal{U} = [\,]$
+
+    \item $min = 2,\ next = 5 \ge min \Longrightarrow \mathcal{H} = [5, 6],\
+    \mathcal{U} = [\,]$
+
+    \item $min = 5,\ next = 3 < min \Longrightarrow \mathcal{H} = [6],\
+    \mathcal{U} = [3]$
+
+    \item $min = 6$, no input.
+
+  \end{enumerate}
+
+  \item[Run 3.] This run will only output 3, the last element of $\mathcal{U}$.
+
+\end{description}

@@ -1,0 +1,36 @@
+\exercise
+
+Let us given a computational model with $D$ disks, memory $M$, and page size
+$B$:
+%
+\begin{enumerate}
+
+  \item Show the I/O-complexity of multi-way mergesort (for $D = 1$) and discuss
+  what is worse in terms of I/O-complexity between either reducing the memory
+  from $M$ to $\sqrt{M}$ or reducing the block size from $B$ to $\sqrt{B}$.
+
+  \item Describe the technique of Disk Striping and show the I/O-complexity of
+  the multi-way mergesort when applies it on $D$ disks.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item The the I/O-complexity of the multi-way mergesort is $O\Big(\frac{n}{B}
+  \log_{\frac{M}{B}} \frac{n}{M}\Big)$. Reducing the page size to $\sqrt{B}$ we
+  obtain an I/O-complexity of $O\Big(\frac{n}{\sqrt{B}}
+  \log_{\frac{M}{\sqrt{B}}} \frac{n}{M}\Big)$, which is better than reducing the
+  memory to $\sqrt{M}$, obtaining a complexity of $O\Big(\frac{n}{B}
+  \log_{\frac{\sqrt{M}}{B}} \frac{n}{\sqrt{M}}\Big)$, since the latter has a
+  lower logarithm base and produces (asymptotically) worse results.
+
+  \item The Disk Striping technique consists of looking at the $D$ disks as one
+  single disk of page size $B' = DB$. The complexity of the multi-way mergesort
+  becomes $O\Big(\frac{n}{B'} \log_{\frac{M}{B'}} \frac{n}{M}\Big) =
+  O\Big(\frac{n}{DB} \log_{\frac{M}{DB}} \frac{n}{M}\Big)$, which is $1 -
+  \log_{\frac{M}{B}} D$ slower than the optimal bound, causing the Disk Striping
+  technique to be less and less efficient as the number of disks increases.
+
+\end{enumerate}
