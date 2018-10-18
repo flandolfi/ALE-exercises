@@ -1,0 +1,36 @@
+\exercise
+
+State and prove the lower bound for sorting $n$ items in a disk-memory system.
+
+\solution
+
+In the RAM model, we can estimate the lower bound for a \emph{comparison-based}
+sorting algorithm by finding the depth of the shallowest comparison-tree, i.e.,
+the tree that has a node for each comparison between 2 items of the same input
+(every node has fan-out 2). An algorithm correspond to a family of such trees
+(one for every input). For a given input of size $n$, the algorithm must search
+the best root-to-leaf paths among $n!$ possible permutations. The shallowest
+tree that has $n!$ leafs has depth $\log_2 n! \approx \log_2 n^n = n\log_2 n$
+(by Stirling's approximation). This formula provides the minimal number of
+comparisons that an algorithm must compute to sort the input, while to find the
+number of I/Os we have to take in account that many of these comparison may
+happen in internal memory (for free). To estimate the number of I/Os we can
+therefore model another comparison-tree, such that every node has the fan out as
+the number of comparisons that can be done in internal memory, i.e. the number
+of possible way in which we can distribute $B$ elements of an I/O among the $M -
+B$ already present in memory, which is at most ${M}\choose{B}$, times the number
+of possible permutations of the $B$ elements in the I/O block, therefore ${M
+\choose B} B!$. Considering the permutations is necessary for the first
+$\frac{n}{B}$ I/Os, since the items are unsorted, while for the remaining I/Os
+the items are already processed, so the fan-out will be just $M \choose B$.
+Therefore every tree that has depth $t$ has ${M \choose B}^t (B!)^\frac{n}{B}$
+leaves. By imposing this number to be at least $n!$, we get the final lower bound
+%
+\begin{align*}
+              && && && && {M \choose B}^t (B!)^\frac{n}{B} &\ge n! && && &&\\
+  && && && \equiv      && t\log{{M \choose B}} + \frac{n}{B}\log{B!} &\ge \log{n!} && && &&\\
+  && && && \Rightarrow && tB\log{\left(\frac{M}{B}\right)} + n\log{B} &\ge n\log{n} && && &&\\
+  && && && \equiv      && tB\log{\frac{M}{B}} &\ge n\log{\frac{n}{B}} && && &&\\
+  && && && \equiv      && t &\ge \frac{n}{B}\log_{\frac{M}{B}}{\frac{n}{B}}\ . && && &&\\
+\end{align*}
+%
