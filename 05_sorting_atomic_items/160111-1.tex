@@ -1,0 +1,109 @@
+\exercise
+
+\begin{enumerate}
+
+  \item Show the pseudo-code of the variant of binary quicksort that reduces the
+  extra-space used during recursive calls, and comments on its complexity and
+  correctness.
+
+  \item State and prove the theorem that establishes the partitioning
+  performance of the multi-pivot selection strategy.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item \autoref{alg:boundedqs} reduces the extra space used during recursive
+  calls by substituting the recursive call on the larger part of the input with
+  another execution of the body of the while. By doing this, ensures that the
+  number of recursive calls is no more than $O(\log_2 n)$. Moreover, if the
+  input is small enough (hence the $j - i > n_0$ in the while condition), this
+  algorithm executes an insertion sort instead, which performs well on very
+  small sequences. The correctness is straightforward, since whenever the
+  algorithm performs a recursive call on the small subsequence it also changes
+  the $i$ and $j$ such that they will delimit the larger part, which will be
+  processed by the next iterative loop.
+  %
+  \begin{algorithm}[tb]
+  \caption{Bounded Quicksort}\label{alg:boundedqs}
+  \begin{algorithmic}[1]
+  \Procedure{BoundedQS}{$S$, $i$, $j$}
+    \While{$j - i > n_0$}
+      \State $r \gets$ pick the position of a ``good pivot''
+      \State swap $S[r]$ with $S[i]$
+      \State $p \gets$ \Call{Partition}{$S$, $i$, $j$}
+      \If{$p \le \frac{i+j}{2}$}
+        \State \Call{BoundedQS}{$S$, $i$, $p - 1$}
+        \State $i \gets p + 1$
+      \Else
+        \State \Call{BoundedQS}{$S$, $p + 1$, $j$}
+        \State $j \gets p - 1$
+      \EndIf
+    \EndWhile
+    \State \Call{InsertionSort}{$S$, $i$, $j$}
+  \EndProcedure
+  \end{algorithmic}
+  \end{algorithm}
+
+  \item \begin{description}
+
+    \item[Lemma.] Let $k \ge 2$ and $a + 1 = 12 \ln k$. A sample f size $(a +
+    1)k - 1$ suffices to ensure that all buckets receive less $4n/k$
+    elements with probability at least $1/2$.
+
+    \item[Proof.] Let $S'$ the sorted version of the input sequence $S$. We
+    split $S'$ in $k/2$ segments of length $2n/k$ each, and we search for a
+    bucket $B_i$ that has at least $4n/k$ elements assigned to it. Such bucket
+    must have its pivots $s_{i-1}$ and $s_i$ positioned outside one of the
+    previous segments. By the definition of oversampling, this may happen only
+    if less than $a + 1$ samples fall in the segment $t_j$ overlapped by $B_i$.
+    We can formulate this probability as
+    %
+    \begin{align*}
+      \mathbb{P}\left[\exists B_i.\ |B_i| \ge \frac{4n}{k} \right] &\le
+      \mathbb{P}\left[\exists t_j.\ t_j \text{ contains} < a + 1 \text{ samples}
+      \right] && \\ &\le \frac{k}{2}\cdot\mathbb{P}\left[ \text{a specific
+      segment contains} < a + 1 \text{ samples} \right] && (\text{\it union
+      bound})\ .
+    \end{align*}
+    %
+    The probability that a delimiter ends in a given segment is
+    $\frac{2n}{k}\cdot\frac{1}{n} = \frac{2}{k}$. Given $X$ the random variable
+    counting those samples, and assuming that $a \ge 1$ and $k \ge 2$, we have
+    that
+    %
+    \begin{align*}
+      && \mathbb{E}\left[X\right] &= \left(\left(a + 1 \right)k -
+      - 1\right)\cdot \frac{2}{k} = 2\left(a + 1 \right) - \frac{2}{k} \ge
+      2\left(a + 1 \right) - 1 \ge \frac{3}{2}\left(a + 1 \right) \\ \equiv\
+      && \frac{2}{3}\cdot\mathbb{E}\left[X\right] &= \left(1 -
+      \frac{1}{3}\right)\mathbb{E}\left[X\right] \ge a + 1\ .
+    \end{align*}
+    %
+    We can now exploit the Chernoff bound, i.e. $$\mathbb{P}\left[ X < (1 -
+    \delta)\mathbb{E}[X] \right] \le e^{-\frac{\delta^2}{2}\mathbb{E}[X]}\ .$$
+    By setting $\delta = 1/3$ and assuming $a + 1 = 12\ln k$, we derive
+    %
+    \begin{align*}
+      \mathbb{P}\left[X < a + 1 \right] &\le \mathbb{P}\left[X < \left(1 -
+      \frac{1}{3}\right)\mathbb{E}\left[X\right] \right] \le
+      \exp\left({-\frac{1}{3^2}\cdot\frac{\mathbb{E}\left[X\right]}{2}}\right) =
+      \exp\left({-\frac{\mathbb{E}\left[X\right]}{18}}\right) \\ &\le
+      \exp\left({-\frac{3}{2}\cdot\frac{a + 1}{18}}\right) = \exp\left({-\frac{a
+      + 1}{12}}\right) = \exp(-\ln k) = \frac{1}{k}\ .
+    \end{align*}
+    %
+    We can now conclude that
+    %
+    \begin{align*}      
+      \mathbb{P}\left[\forall B_i.\ |B_i| < \frac{4n}{k} \right] = 1 -
+      \mathbb{P}\left[\exists B_i.\ |B_i| \ge \frac{4n}{k} \right] \ge 1 -
+      \frac{k}{2}\cdot\mathbb{P}\left[X < a + 1 \right] \ge 1 -
+      \frac{k}{2}\frac{1}{k} = \frac{1}{2}\ .
+    \end{align*}
+
+  \end{description}
+
+\end{enumerate}
