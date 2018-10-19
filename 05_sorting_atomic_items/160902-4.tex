@@ -27,13 +27,17 @@ Therefore every tree that has depth $t$ has ${M \choose B}^t (B!)^\frac{n}{B}$
 leaves. By imposing this number to be at least $n!$, we get the final lower bound
 %
 \begin{align*}
-              && && && && {M \choose B}^t (B!)^\frac{n}{B} &\ge n! && && &&\\
-  && && && \equiv      && t\log{{M \choose B}} + \frac{n}{B}\log{B!} &\ge \log{n!} && && &&\\
-  && && && \Rightarrow && tB\log{\left(\frac{M}{B}\right)} + n\log{B} &\ge n\log{n} && && &&\\
-  && && && \equiv      && tB\log{\frac{M}{B}} &\ge n\log{\frac{n}{B}} && && &&\\
-  && && && \equiv      && t &\ge \frac{n}{B}\log_{\frac{M}{B}}{\frac{n}{B}}\ . && && &&\\
+  && && && && &&             && {M \choose B}^t (B!)^\frac{n}{B} &\ge n! && && && && && && && \\
+  && && && && && \equiv      && t\log{{M \choose B}} + \frac{n}{B}\log{B!} &\ge \log{n!} && && && && && && && \\
+  && && && && && \Rightarrow && tB\log{\frac{M}{B}} + n\log{B} &\ge n\log{n} && && && && && && && \\
+  && && && && && \equiv      && tB\log{\frac{M}{B}} &\ge n\log{\frac{n}{B}} && && && && && && && \\
+  && && && && && \equiv      && t &\ge \frac{n}{B}\log_{\frac{M}{B}}{\frac{n}{B}}\ . && && && && && && && 
 \end{align*}
 %
 Notice that we can write this lower bound also as $O\big(\frac{n}{B}
-\log_{\frac{M}{B}} \frac{n}{M}\big)$, since $$\log_{\frac{M}{B}} \frac{n}{B} =
-\log_{\frac{M}{B}} \frac{nM}{BM} = \log_{\frac{M}{B}} \frac{n}{M} + 1\ .$$
+\log_{\frac{M}{B}} \frac{n}{M}\big)$, since
+%
+\begin{align*}
+  \log_{\frac{M}{B}} \frac{n}{B} =
+  \log_{\frac{M}{B}} \frac{nM}{BM} = \log_{\frac{M}{B}} \frac{n}{M} + 1\ .
+\end{align*}
