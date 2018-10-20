@@ -1,0 +1,71 @@
+\exercise
+
+Given a sequence $S$ of $n$ elements, possibly unordered,
+%
+\begin{enumerate}
+
+  \item write the pseudo-code of a randomized algorithm that receives in input
+  $S$ and an integer $k$, and selects fast the $k$-th ranked item of $S$;
+
+  \item evaluate the average time complexity of your algorithm (\emph{hint}: the
+  average time complexity of your algorithm should be linear in $n$).
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item \autoref{alg:randselect} selects the $k$-th item from a given sequence
+  $S$.
+
+  \item Let us consider two (mutual exclusive) events:
+  %
+  \begin{itemize}
+
+    \item $S[r]$ has rank in the range $\left[\frac{1}{3}n,
+    \frac{2}{3}n\right]$. This may happen with probability $\frac{1}{3}$ and
+    causes both $n_<$ and $n_>$ to be less or equal than $\frac{2}{3}n$.
+
+    \item $S[r]$ has rank outside the previous range. This may happen with
+    probability $\frac{2}{3}$.
+
+  \end{itemize}
+  %
+  Since the recursive calls in \autoref{alg:randselect} are mutual exclusive, we
+  may formulate its average time as
+  %
+  \begin{align*}
+    && && &&        && \widehat{T}(n) &\le O(n) + \frac{1}{3}\cdot\widehat{T}\left(\frac{2}{3}n\right) + \frac{2}{3}\cdot\widehat{T}\left(n\right) && && && \\
+    && && && \equiv && \frac{1}{3}\cdot\widehat{T}\left(n\right) &\le O(n) + \frac{1}{3}\cdot\widehat{T}\left(\frac{2}{3}n\right) && && && \\
+    && && && \equiv && \widehat{T}\left(n\right) &\le O(n) + \widehat{T}\left(\frac{2}{3}n\right) = O(n)\ ,&& && &&
+  \end{align*}
+  %
+  where the first term at the right-hand side of the first equation is the
+  complexity of the partitioning of $S$ in $S_<$ and $S_>$, which can be
+  computed in linear time (and also linear I/Os). The second term represents the
+  time complexity of the first event, multiplied by its probability, while the
+  last term its complementary event, for which we assigned a crude upper bound.
+  The last equation is the result of the application of the master theorem.
+
+\end{enumerate}
+%
+\begin{algorithm}[t]
+\caption{RandSelect algorithm}\label{alg:randselect}
+\begin{algorithmic}[1]
+\Function{RandSelect}{$S$, $k$}
+  \State $r \gets $ \Call{Random}{1, $n$}
+  \State $S_< \gets \left\{ s \in S \mid s < S[r] \right\}$
+  \State $S_> \gets \left\{ s \in S \mid s > S[r] \right\}$
+  \State $n_< \gets |S_<|$
+  \State $n_= \gets |S| - (|S_<| + |S_>|)$
+  \If{$k \le n_<$}
+    \State \Return \Call{RandSelect}{$S_<$, $k$}
+  \ElsIf{$k \le n_< + n_=$}
+    \State \Return $S[r]$
+  \Else
+    \State \Return \Call{RandSelect}{$S_>$, $k - n_< - n_=$}
+  \EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
