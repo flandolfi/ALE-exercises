@@ -1,0 +1,68 @@
+\exercise
+
+Let us given two arrays: $A[1,n]$ of items and $\pi[1,n]$ that denotes the permutation of the positions in the range $[1,n]$, such that $\pi[i]$ is the position where the item $A[i]$ must be moved to.
+%
+\begin{enumerate}
+
+  \item Describe an I/O-efficient algorithm that permutes the items of $A$
+  according to permutation $\pi$, and discuss its I/O-complexity.
+
+  \item Simulate the proposed algorithm  over the arrays $A = [c, d, a, b, e]$
+  and $\pi = [3, 4, 1, 2, 5]$.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item We first store in external memory a sequence of $n$ pairs $\langle i,
+  \pi[i] \rangle$. This can be done with {\tt scan} primitives, taking
+  $O\big(\frac{n}{B}\big)$ I/Os. Then we sort the pairs with respect to the
+  second element of each pairs, using the {\tt sort} primitive, in
+  $O\big(\frac{n}{B}\log_{\frac{M}{B}}\frac{n}{M}\big)$. We substitute the
+  second component $\pi[i]$ of every pair with $A[\pi[i]]$, again with {\tt
+  scan}s in linear I/Os. We then re-{\tt sort} the pairs by their first
+  component. Projecting the sequence by its second component will produce the
+  permuted array $A[\pi[i]]$. This method takes asymptotically
+  $O\big(\frac{n}{B}\log_{\frac{M}{B}}\frac{n}{M}\big)$, which is the lower
+  bound for permuting in external memory.
+
+  \item Applying the previous method to the provided arrays will produce the
+  following result
+  %
+  \begin{align*}
+    \begin{matrix}
+      \langle 1, \pi[1] = 3 \rangle \\
+      \langle 2, \pi[2] = 4 \rangle \\
+      \langle 3, \pi[3] = 1 \rangle \\
+      \langle 4, \pi[4] = 2 \rangle \\
+      \langle 5, \pi[5] = 5 \rangle \\
+    \end{matrix}
+    \stackrel{\text{\tiny \tt sort}}{\longmapsto}
+    \begin{matrix}
+      \langle 3, 1 \rangle \\
+      \langle 4, 2 \rangle \\
+      \langle 1, 3 \rangle \\
+      \langle 2, 4 \rangle \\
+      \langle 5, 5 \rangle \\
+    \end{matrix}
+    \stackrel{\text{\tiny \tt scan}}{\longmapsto}
+    \begin{matrix}
+      \langle 3, A[1] = c \rangle \\
+      \langle 4, A[2] = d \rangle \\
+      \langle 1, A[3] = a \rangle \\
+      \langle 2, A[4] = b \rangle \\
+      \langle 5, A[5] = e \rangle \\
+    \end{matrix}
+    \stackrel{\text{\tiny \tt sort}}{\longmapsto}
+    \begin{matrix}
+      \langle 1, a \rangle \\
+      \langle 2, b \rangle \\
+      \langle 3, c \rangle \\
+      \langle 4, d \rangle \\
+      \langle 5, e \rangle \\
+    \end{matrix}
+  \end{align*}
+
+\end{enumerate}
