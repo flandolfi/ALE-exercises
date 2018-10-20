@@ -18,6 +18,26 @@ Given a sequence $S$ of $n$ elements, possibly unordered,
 
   \item \autoref{alg:randselect} selects the $k$-th item from a given sequence
   $S$.
+  %
+  \begin{algorithm}[t]
+  \caption{RandSelect algorithm}\label{alg:randselect}
+  \begin{algorithmic}[1]
+  \Function{RandSelect}{$S$, $k$}
+    \State $r \gets $ \Call{Random}{1, $n$}
+    \State $S_< \gets \left\{ s \in S \mid s < S[r] \right\}$
+    \State $S_> \gets \left\{ s \in S \mid s > S[r] \right\}$
+    \State $n_< \gets |S_<|$
+    \State $n_= \gets |S| - (|S_<| + |S_>|)$
+    \If{$k \le n_<$}
+      \State \Return \Call{RandSelect}{$S_<$, $k$}
+    \ElsIf{$k \le n_< + n_=$}
+      \State \Return $S[r]$
+    \Else
+      \State \Return \Call{RandSelect}{$S_>$, $k - n_< - n_=$}
+    \EndIf
+  \EndFunction
+  \end{algorithmic}
+  \end{algorithm}
 
   \item Let us consider two (mutual exclusive) events:
   %
@@ -49,23 +69,3 @@ Given a sequence $S$ of $n$ elements, possibly unordered,
   The last equation is the result of the application of the master theorem.
 
 \end{enumerate}
-%
-\begin{algorithm}[t]
-\caption{RandSelect algorithm}\label{alg:randselect}
-\begin{algorithmic}[1]
-\Function{RandSelect}{$S$, $k$}
-  \State $r \gets $ \Call{Random}{1, $n$}
-  \State $S_< \gets \left\{ s \in S \mid s < S[r] \right\}$
-  \State $S_> \gets \left\{ s \in S \mid s > S[r] \right\}$
-  \State $n_< \gets |S_<|$
-  \State $n_= \gets |S| - (|S_<| + |S_>|)$
-  \If{$k \le n_<$}
-    \State \Return \Call{RandSelect}{$S_<$, $k$}
-  \ElsIf{$k \le n_< + n_=$}
-    \State \Return $S[r]$
-  \Else
-    \State \Return \Call{RandSelect}{$S_>$, $k - n_< - n_=$}
-  \EndIf
-\EndFunction
-\end{algorithmic}
-\end{algorithm}

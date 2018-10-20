@@ -25,27 +25,6 @@
   algorithm performs a recursive call on the small subsequence it also changes
   the $i$ and $j$ such that they will delimit the larger part, which will be
   processed by the next iterative loop.
-  %
-  \begin{algorithm}[tb]
-  \caption{Bounded Quicksort}\label{alg:boundedqs}
-  \begin{algorithmic}[1]
-  \Procedure{BoundedQS}{$S$, $i$, $j$}
-    \While{$j - i > n_0$}
-      \State $r \gets$ pick the position of a ``good pivot''
-      \State swap $S[r]$ with $S[i]$
-      \State $p \gets$ \Call{Partition}{$S$, $i$, $j$}
-      \If{$p \le \frac{i+j}{2}$}
-        \State \Call{BoundedQS}{$S$, $i$, $p - 1$}
-        \State $i \gets p + 1$
-      \Else
-        \State \Call{BoundedQS}{$S$, $p + 1$, $j$}
-        \State $j \gets p - 1$
-      \EndIf
-    \EndWhile
-    \State \Call{InsertionSort}{$S$, $i$, $j$}
-  \EndProcedure
-  \end{algorithmic}
-  \end{algorithm}
 
   \item \begin{description}
 
@@ -97,7 +76,7 @@
     %
     We can now conclude that
     %
-    \begin{align*}      
+    \begin{align*}
       \mathbb{P}\left[\forall B_i.\ |B_i| < \frac{4n}{k} \right] = 1 -
       \mathbb{P}\left[\exists B_i.\ |B_i| \ge \frac{4n}{k} \right] \ge 1 -
       \frac{k}{2}\cdot\mathbb{P}\left[X < a + 1 \right] \ge 1 -
@@ -107,3 +86,24 @@
   \end{description}
 
 \end{enumerate}
+%
+\begin{algorithm}[t]
+\caption{Bounded Quicksort}\label{alg:boundedqs}
+\begin{algorithmic}[1]
+\Procedure{BoundedQS}{$S$, $i$, $j$}
+  \While{$j - i > n_0$}
+    \State $r \gets$ pick the position of a ``good pivot''
+    \State swap $S[r]$ with $S[i]$
+    \State $p \gets$ \Call{Partition}{$S$, $i$, $j$}
+    \If{$p \le \frac{i+j}{2}$}
+      \State \Call{BoundedQS}{$S$, $i$, $p - 1$}
+      \State $i \gets p + 1$
+    \Else
+      \State \Call{BoundedQS}{$S$, $p + 1$, $j$}
+      \State $j \gets p - 1$
+    \EndIf
+  \EndWhile
+  \State \Call{InsertionSort}{$S$, $i$, $j$}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}

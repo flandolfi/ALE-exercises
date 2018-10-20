@@ -35,22 +35,3 @@ Consider the Snow Plow technique (\autoref{alg:snowplow}):
   |\mathcal{U}| = M \implies \tau = 3M$.
 
 \end{enumerate}
-%
-\begin{algorithm}[t]
-\caption{Snow Plow algorithm}\label{alg:snowplow}
-\begin{algorithmic}[1]
-\Require $\mathcal{U}$ unsorted array of $M$ items
-\State Build a min-heap $\mathcal{H}$ over $\mathcal{U}$'s items
-\State $\mathcal{U} \gets \emptyset$
-\While{$\mathcal{H} \neq \emptyset$}
-  \State $min \gets \min(\mathcal{H})$
-  \State Write $min$ in the output run
-  \State $next \gets$ next item from input sequence
-  \If{$next < min$}
-    \State Write $next$ in $\mathcal{U}$
-  \Else
-    \State Insert $next$ in $\mathcal{H}$
-  \EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
