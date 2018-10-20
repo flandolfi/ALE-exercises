@@ -7,25 +7,6 @@ sorted blocks it forms with a memory capable to store $M = 2$ integers.
 
 \solution
 
-\begin{algorithm}[b]
-\caption{Snow Plow algorithm}\label{alg:snowplow}
-\begin{algorithmic}[1]
-\Require $\mathcal{U}$ unsorted array of $M$ items
-\State Build a min-heap $\mathcal{H}$ over $\mathcal{U}$'s items
-\State $\mathcal{U} \gets \emptyset$
-\While{$\mathcal{H} \neq \emptyset$}
-  \State $min \gets \min(\mathcal{H})$
-  \State Write $min$ in the output run
-  \State $next \gets$ next item from input sequence
-  \If{$next < min$}
-    \State Write $next$ in $\mathcal{U}$
-  \Else
-    \State Insert $next$ in $\mathcal{H}$
-  \EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
-%
 The Snow Plow (\autoref{alg:snowplow}) creates an heap $\mathcal{H}$ over the
 (unsorted) elements present in memory. Then it stores in the output run the
 minimum of $\mathcal{H}$ ($min$) and loads in memory the next element of the

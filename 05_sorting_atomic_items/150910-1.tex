@@ -1,0 +1,56 @@
+\exercise
+
+Consider the Snow Plow technique (\autoref{alg:snowplow}):
+%
+\begin{enumerate}
+
+  \item Prove that the average length of the formed runs is $2M$, where $M$ is
+  the size of the available internal memory.
+
+  \item Compute the average run length by assuming that the probability to
+  insert an item in the in-memory-heap is $\sfrac{2}{3}$ (instead of the classic
+  $\sfrac{1}{2}$).
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item When the Snow Plow terminates, $\mathcal{H} = \emptyset$ and
+  $|\mathcal{U}| = M$. Assuming $\tau$ elements have been read from the input
+  sequence, we can state that $M$ of these elements ended in $\mathcal{U}$ while
+  the remaining $\tau - M$ ended in $\mathcal{H}$. So the length of the sorted
+  run is $M + (\tau - M) = \tau$, where the first $M$ is the number of elements
+  that were present in $\mathcal{H}$ before the beginning of the procedure,
+  while $\tau - M$ the number of elements inserted from the input sequence.
+  Assuming a uniformly distributed input sequence, we can say that for each
+  $min$ retrieved from $\mathcal{H}$, the probability that the next element is
+  greater than $min$ is $\sfrac{1}{2}$. Therefore, the input items are equally
+  distributed between $\mathcal{H}$ and $\mathcal{U}$, and we can derive the
+  conclusion $\frac{1}{2}\tau = |\mathcal{H}| = |\mathcal{U}| = M \implies \tau
+  = 2M$.
+
+  \item $\frac{2}{3}\tau = |\mathcal{H}| \implies \frac{1}{3}\tau =
+  |\mathcal{U}| = M \implies \tau = 3M$.
+
+\end{enumerate}
+%
+\begin{algorithm}[t]
+\caption{Snow Plow algorithm}\label{alg:snowplow}
+\begin{algorithmic}[1]
+\Require $\mathcal{U}$ unsorted array of $M$ items
+\State Build a min-heap $\mathcal{H}$ over $\mathcal{U}$'s items
+\State $\mathcal{U} \gets \emptyset$
+\While{$\mathcal{H} \neq \emptyset$}
+  \State $min \gets \min(\mathcal{H})$
+  \State Write $min$ in the output run
+  \State $next \gets$ next item from input sequence
+  \If{$next < min$}
+    \State Write $next$ in $\mathcal{U}$
+  \Else
+    \State Insert $next$ in $\mathcal{H}$
+  \EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
