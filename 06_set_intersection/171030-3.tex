@@ -1,0 +1,51 @@
+\exercise
+
+\begin{enumerate}
+
+  \item Intersect the two sequences $S_1 = [1, 3, 10]$ and $S_2 = [1, 3, 5, 7,
+  10, 15, 20]$ via the ``mutual partition'' algorithm, detailing the inputs to
+  the various recursive steps.
+
+  \item Prove that the doubling algorithm applied on two sorted sequences of $n$
+  and $m$ elements executes their intersection in $O\big(m \big(1 + \log
+  \frac{n}{m}\big)\big)$ time, with $m < n$.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+  \item {\sc MutualPartition($S_1$, $S_2$)} $\implies$ {\bf return} 3
+    \begin{itemize}[topsep=-0.1em]
+      \item[$\hookrightarrow$] {\sc MutualPartition($[1]$, $[1]$)} $\implies$ {\bf return} 1
+        \begin{itemize}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
+        \end{itemize}
+      \item[$\hookrightarrow$] {\sc MutualPartition($[10]$, $[5, 7, 10, 15, 20]$)} $\implies$ {\bf return} 10
+        \begin{itemize}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[5, 7]$)} $\implies$ {\bf stop}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[15, 20]$)} $\implies$ {\bf stop}
+        \end{itemize}
+    \end{itemize}
+
+  \item At the end of the exponential jumping, the searched item $b_j$ of the
+  shorter sequence will be positioned, if present, in the longer sequence $A$
+  such that $A[i + 2^{k-1}] < b_j \le A[i + 2^k]$. This means that the final
+  position $i'$ of $b_j$ will be in the second half of the subsequence $A[i + 1,
+  \min\{ i + 2^k,\ n\}]$, in fact $2^{k-1} < i' - i \le 2^k \implies 2^k < 2(i'
+  - i)$. Let us call $\Delta$ the size of the subsequence on which the binary
+  search is executed. We have that $i' - i \le \Delta \le 2^k \le 2(i' - i)$.
+  For every element of the shorter subsequence the algorithm performs an
+  exponential jumping and a binary search, both of complexity $O(\log_2\Delta)$.
+  Summing for all subsequences we reach the conclusion
+  %
+  \begin{align*}
+       \sum_{j=1}^m \log_2\Delta_j &< \sum_{j=1}^m \log_2 2(i_j - i_{j-1}) \\
+    &= \sum_{j=1}^m (1 + \log_2 (i_j - i_{j-1})) \\
+    &= m + \sum_{j=1}^m \log_2 (i_j - i_{j-1}) \\
+    &< m + m\log_2 \sum_{j=1}^m \frac{i_j - i_{j-1}}{m} \tag{Jensen's ineqality} \\
+    &\le m\left(1 + \log_2\frac{n}{m}\right)\ . \tag{$\sum_{j=1}^m i_j - i_{j-1} = i_m - i_0 \le n$}
+  \end{align*}
+
+\end{enumerate}
