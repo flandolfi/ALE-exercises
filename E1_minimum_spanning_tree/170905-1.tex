@@ -29,16 +29,16 @@ E, 6),\ (B, C, 1),\ (B, F, 3),\ (C, D, 3),\ (C, F, 5) \big\}$$
 
 \end{enumerate}
 %
-\begin{figure}[b]
+\begin{figure}[t]
   \begin{subfigure}[m]{0.6\linewidth}
     \centering
     \begin{tabular}{c|c|c|c|c|c|c|c|}
       & Operation & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ \\ \hline\hline
       0. & --  & $0_A$ & \infty & \infty & \infty & \infty & \infty \\ \hline
       1. & Extract $A$ & \bullet & $2_A$ & \infty & \infty & $6_A$ & $4_A$ \\ \hline
-      2. & Extract $B$ & & \bullet & $1_B$ & \infty & $6_A$ & $4_A$ \\ \hline
-      3. & Extract $C$ & & & \bullet & $3_C$ & $6_A$ & $4_A$ \\ \hline
-      4. & Extract $D$ & & & & \bullet & $6_A$ & $4_A$ \\ \hline
+      2. & Extract $B$ & & \bullet & $1_B$ & \infty & $6_A$ & $3_B$ \\ \hline
+      3. & Extract $C$ & & & \bullet & $3_C$ & $6_A$ & $3_B$ \\ \hline
+      4. & Extract $D$ & & & & \bullet & $6_A$ & $3_B$ \\ \hline
       5. & Extract $F$ & & & & & $6_A$ & \bullet \\ \hline
       6. & Extract $E$ & & & & & \bullet & \\ \hline
     \end{tabular}
@@ -59,10 +59,10 @@ E, 6),\ (B, C, 1),\ (B, F, 3),\ (C, D, 3),\ (C, F, 5) \big\}$$
       \node[draw, circle] (E) at (300:\radius) {$E$};
 
       \path (A) edge[very thick] node[sloped, above] {2} (B);
-      \path (A) edge[very thick] node[sloped, below] {4} (F);
+      \path (A) edge node[sloped, below] {4} (F);
       \path (A) edge[very thick] node[pos=0.75, sloped, above] {6} (E);
       \path (B) edge[very thick] node[sloped, above] {1} (C);
-      \path (B) edge node[pos=0.4, left] {3} (F);
+      \path (B) edge[very thick] node[pos=0.4, left] {3} (F);
       \path (C) edge[very thick] node[sloped, above] {3} (D);
       \path (C) edge node[sloped, above] {5} (F);
     \end{tikzpicture}
