@@ -15,14 +15,14 @@
 \solution
 
 \begin{enumerate}
-  \item {\sc MutualPartition($S_1$, $S_2$)} $\implies$ {\bf return} 3
+  \item {\sc MutualPartition($[1, \underline{3}, 10]$, $[1, 3, 5, 7, 10, 15, 20]$)} $\implies$ {\bf output} 3
     \begin{itemize}[topsep=-0.1em]
-      \item[$\hookrightarrow$] {\sc MutualPartition($[1]$, $[1]$)} $\implies$ {\bf return} 1
+      \item[$\hookrightarrow$] {\sc MutualPartition($[\underline{1}]$, $[1]$)} $\implies$ {\bf output} 1
         \begin{itemize}
           \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
           \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
         \end{itemize}
-      \item[$\hookrightarrow$] {\sc MutualPartition($[10]$, $[5, 7, 10, 15, 20]$)} $\implies$ {\bf return} 10
+      \item[$\hookrightarrow$] {\sc MutualPartition($[\underline{10}]$, $[5, 7, 10, 15, 20]$)} $\implies$ {\bf output} 10
         \begin{itemize}
           \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[5, 7]$)} $\implies$ {\bf stop}
           \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[15, 20]$)} $\implies$ {\bf stop}
