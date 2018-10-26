@@ -9,18 +9,9 @@ of 3 nodes (hence $M$ is able to host 3 nodes).
 
 Let us reassign to all nodes a numeric label corresponding to the rank of its
 letter, such as $A \mapsto 1,\ \dots,\ F \mapsto 6$. Then we apply the random
-permutation $$\pi(n) = \left( 3n + 2 \bmod 7 \right) + 1\ ,$$ which produces the
-following mapping:
-%
-\begin{align*}
-  \pi(A \mapsto 1) &= 6 \\
-  \pi(B \mapsto 2) &= 2 \\
-  \pi(C \mapsto 3) &= 5 \\
-  \pi(D \mapsto 4) &= 1 \\
-  \pi(E \mapsto 5) &= 4 \\
-  \pi(F \mapsto 6) &= 7
-\end{align*}
-%
+permutation $\pi(n) = \left( 3n + 2 \bmod 7 \right) + 1$, which produces the
+following mapping $$\pi(A \mapsto 1) = 6,\ \pi(B \mapsto 2) = 2,\ \pi(C \mapsto
+3) = 5,\ \pi(D \mapsto 4) = 1,\ \pi(E \mapsto 5) = 4,\ \pi(F \mapsto 6) = 7\ .$$
 We can now proceed constructing the tuples for the priority queue and execute
 the Sibeyn's algorithm, starting with $current = 0$ and extracting the minimum
 entry in the priority queue $Q$ (\autoref{fig:sibeyn0}), ordered by the first
