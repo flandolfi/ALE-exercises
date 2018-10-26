@@ -1,0 +1,146 @@
+\exercise
+
+Perform the intersection between the two sets $S_1 = [1, 8, 10]$ and $S_2 = [1,
+2, 5, 7, 10, 15, 20]$ via
+%
+\begin{enumerate}
+  \item the ``mutual partition'' algorithm;
+  \item the algorithm based on ``binary search with exponential jumps''.
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+  \item {\sc MutualPartition($[1, \underline{8}, 10]$, $[1, 2, 5, 7, 10, 15, 20]$)} $\implies$ 8 {\bf not found}
+    \begin{itemize}[topsep=-0.1em]
+      \item[$\hookrightarrow$] {\sc MutualPartition($[\underline{1}]$, $[1, 2, 5, 7]$)} $\implies$ {\bf output} 1
+        \begin{itemize}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[2, 5, 7]$)} $\implies$ {\bf stop}
+        \end{itemize}
+      \item[$\hookrightarrow$] {\sc MutualPartition($[\underline{10}]$, $[10, 15, 20]$)} $\implies$ {\bf output} 10
+        \begin{itemize}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $\emptyset$)} $\implies$ {\bf stop}
+          \item[$\hookrightarrow$] {\sc MutualPartition($\emptyset$, $[15, 20]$)} $\implies$ {\bf stop}
+        \end{itemize}
+    \end{itemize}
+
+  \item \autoref{fig:doubling-intersection} shows the steps computed by the
+  algorithm.
+  %
+  \begin{figure}[t]
+    \begin{subfigure}{\linewidth}
+      \centering
+      \begin{tikzpicture}[
+          node distance=0.8cm,
+          every node/.append style={
+            draw,rectangle,
+            minimum width=0.8cm,
+            minimum height=0.8cm,
+            inner sep=0
+          }
+        ]
+
+        \node[draw=none] (S1) {$S_1$};
+        \node[right of=S1, very thick] (B1) {1};
+        \node[right of=B1] (B2) {8};
+        \node[right of=B2] (B3) {10};
+
+        \node[draw=none, right=1.6cm of B3] (S2) {$S_2$};
+        \node[very thick, right of=S2] (A0) {$\textasteriskcentered$};
+        \node[right of=A0, fill=gray] (A1) {1};
+        \node[right of=A1] (A2) {2};
+        \node[right of=A2] (A3) {5};
+        \node[right of=A3] (A4) {7};
+        \node[right of=A4] (A5) {10};
+        \node[right of=A5] (A6) {16};
+        \node[right of=A6] (A7) {20};
+
+        \path (A0) edge[-latex, out=90, in=90, distance=0.5cm] (A1);
+        \path node[below=0.5cm of A1, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (A1);
+      \end{tikzpicture}
+      \caption{}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+      \centering
+      \begin{tikzpicture}[
+          node distance=0.8cm,
+          every node/.append style={
+            draw,rectangle,
+            minimum width=0.8cm,
+            minimum height=0.8cm,
+            inner sep=0
+          }
+        ]
+
+        \node[draw=none] (S1) {$S_1$};
+        \node[right of=S1] (B1) {1};
+        \node[right of=B1, very thick] (B2) {8};
+        \node[right of=B2] (B3) {10};
+
+        \node[draw=none, right=1.6cm of B3] (S2) {$S_2$};
+        \node[right of=S2] (A0) {$\textasteriskcentered$};
+        \node[very thick, right of=A0] (A1) {1};
+        \node[right of=A1] (A2) {2};
+        \node[right of=A2] (A3) {5};
+        \node[right of=A3, fill=lightgray] (A4) {7};
+        \node[right of=A4, fill=lightgray] (A5) {10};
+        \node[right of=A5] (A6) {16};
+        \node[right of=A6] (A7) {20};
+
+        \path (A1) edge[-latex, out=70, in=110, distance=0.3cm] (A2);
+        \path (A1) edge[-latex, out=80, in=100, distance=0.5cm] (A3);
+        \path (A1) edge[-latex, out=90, in=90, distance=0.8cm] (A5);
+
+        \path (A4) edge[-latex, out=-80, in=-100, distance=0.5cm, dashed] (A5);
+        \path node[below=0.5cm of A4, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (A4);
+      \end{tikzpicture}
+      \caption{}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+      \centering
+      \begin{tikzpicture}[
+          node distance=0.8cm,
+          every node/.append style={
+            draw,rectangle,
+            minimum width=0.8cm,
+            minimum height=0.8cm,
+            inner sep=0
+          }
+        ]
+
+        \node[draw=none] (S1) {$S_1$};
+        \node[right of=S1] (B1) {1};
+        \node[right of=B1] (B2) {8};
+        \node[right of=B2, very thick] (B3) {10};
+
+        \node[draw=none, right=1.6cm of B3] (S2) {$S_2$};
+        \node[right of=S2] (A0) {$\textasteriskcentered$};
+        \node[right of=A0] (A1) {1};
+        \node[right of=A1] (A2) {2};
+        \node[right of=A2] (A3) {5};
+        \node[right of=A3, very thick] (A4) {7};
+        \node[right of=A4, fill=gray] (A5) {10};
+        \node[right of=A5] (A6) {16};
+        \node[right of=A6] (A7) {20};
+
+        \path (A4) edge[-latex, out=90, in=90, distance=0.5cm] (A5);
+
+        \path node[below=0.5cm of A5, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (A5);
+      \end{tikzpicture}
+      \caption{}
+    \end{subfigure}
+
+    \caption{Doubling search executed on the given sequences. Solid lines
+    represent the steps of the exponential jumps, while dashed lines the ones of
+    the binary search, which is performed over the gray subsequence (darker cells
+    represent items of the intersection). Thick nodes represent the algorithm's
+    current item of each sequences: for $S_1$ is the node which is currently
+    searched in the longer sequence, while for $S_2$ is the last item intersected
+    or, if not found, the maximal item in $S_2$ which is lower than last searched
+    item (for the first iteration, is just a placeholder).}
+
+    \label{fig:doubling-intersection}
+  \end{figure}
+
+\end{enumerate}
