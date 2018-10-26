@@ -50,7 +50,7 @@ subsequence such that $S[i + 2^{k-1}] < 51 \le S[i + 2^k]$ (in this case, $i =
     \path (0) edge[-latex, out=85, in=95, distance=1.3cm] (8);
     \path (0) edge[-latex, out=90, in=90, distance=2.1cm] (16);
 
-    \path (9) edge[dashed, -latex, out=-80, in=-90, distance=1.3cm] (13);
+    \path node[below=0.8cm of 13, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (13);
     \path (13) edge[dashed, -latex, out=-100, in=-80, distance=0.8cm] (11);
 
   \end{tikzpicture}
