@@ -56,7 +56,7 @@ Perform the intersection between the two sets $S_1 = [1, 8, 10]$ and $S_2 = [1,
         \node[right of=A5] (A6) {16};
         \node[right of=A6] (A7) {20};
 
-        \path (A0) edge[-latex, out=90, in=90, distance=0.5cm] (A1);
+        \path (A0) edge[-latex, out=90, in=90, distance=0.4cm] (A1);
         \path node[below=0.5cm of A1, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (A1);
       \end{tikzpicture}
       \caption{}
@@ -124,7 +124,7 @@ Perform the intersection between the two sets $S_1 = [1, 8, 10]$ and $S_2 = [1,
         \node[right of=A5] (A6) {16};
         \node[right of=A6] (A7) {20};
 
-        \path (A4) edge[-latex, out=90, in=90, distance=0.5cm] (A5);
+        \path (A4) edge[-latex, out=90, in=90, distance=0.4cm] (A5);
 
         \path node[below=0.5cm of A5, draw, circle, fill=black, inner sep=0.5mm, minimum width=0, minimum height=0] {} edge[dashed, -latex, out=90, in=-90] (A5);
       \end{tikzpicture}
@@ -133,12 +133,10 @@ Perform the intersection between the two sets $S_1 = [1, 8, 10]$ and $S_2 = [1,
 
     \caption{Doubling search executed on the given sequences. Solid lines
     represent the steps of the exponential jumps, while dashed lines the ones of
-    the binary search, which is performed over the gray subsequence (darker cells
-    represent items of the intersection). Thick nodes represent the algorithm's
-    current item of each sequences: for $S_1$ is the node which is currently
-    searched in the longer sequence, while for $S_2$ is the last item intersected
-    or, if not found, the maximal item in $S_2$ which is lower than last searched
-    item (for the first iteration, is just a placeholder).}
+    the binary search, which is performed over the gray subsequence (darker
+    cells represent items of the intersection). Thick nodes represent the
+    algorithm's current item of each sequences. The first node of $S_2$ is just
+    a placeholder for the first iteration.}
 
     \label{fig:doubling-intersection}
   \end{figure}
