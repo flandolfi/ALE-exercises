@@ -1,0 +1,37 @@
+\exercise
+
+Consider the problem which requires to compute the intersection between two
+sorted sets $A$ and $B$ of size $n$ and $m$ respectively, $m < n$.
+%
+\begin{enumerate}
+  \item Propose a solution taking $O(n + m)$ time.
+  \item Propose a solution taking $O(m \log n)$ time.
+  \item Propose a solution taking $O\big(m \big(1 + \log \frac{n}{m}\big)\big)$ time.
+  \item Show that the last time bound is optimal in the comparison model.
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item Scan both sets in a merge fashion: let $a_i$ and $b_j$ the $i$-th and
+  $j$-th elements of the sequences $A$ and $B$, respectively. If $a_i = b_j$,
+  they belong to $A \cap B$, else if $a_i < b_j$ (or $a_i > b_j$), we increase
+  $i$ (or $j$), until the end of a sequence. This solution has complexity $O(m +
+  n)$.
+
+  \item We take the shorter sequence and for each of its elements we perform a
+  binary search on the longer one. This solution has complexity $O(m\log n)$.
+
+  \item We perform an intersection based on mutual partitioning: we take the
+  median element of the shorter and search it in the longer one via binary
+  search. Then, we perform again this procedure recursively on the remaining
+  lower and upper halves. This solution has time complexity $T(m,n) = O(\log n)
+  + 2T\big(\frac{n}{2}, \frac{m}{2}\big) = O\big(m \big(1 + \log
+  \frac{n}{m}\big)\big)$.
+
+  \item There are $n \choose m$ possible solution to the set intersection
+  problem, so every comparison-based algorithm must perform $\Omega\big(\log {n
+  \choose m}\big) = \Omega\big(m\log \frac{n}{m}\big)$ steps.
+
+\end{enumerate}
