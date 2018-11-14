@@ -1,0 +1,35 @@
+\exercise
+
+You are given a set $S$ of $n$ strings of variable length, summing up to $N$
+characters. Strings may be repeated. We wish to create the string sequence $S’$
+which is obtained from $S$ by keeping only one copy per string, and taking an
+I/O-cost that is $N/B$ plus a function of $n$, $M$, $B$. Describe and comment
+you solution. \emph{(Hint: Assume that the distinguishing prefix of the strings
+in $S$ is $d > M$. Randomized solutions are admitted, but error bounds have to
+be provided.)}
+
+\solution
+
+To solve this problem we can:
+%
+\begin{enumerate}
+
+  \item Scan all the strings, compute their hashes, and store them as a sequence
+  of $\langle h(s_i), i \rangle$. This costs $O\big(\frac{N}{B}\big)$.
+
+  \item Sort their hashes by their fingerprints, in
+  $O\big(\frac{n}{B}\log_{\frac{M}{B}} \frac{n}{M}\big)$.
+
+  \item Scan all the pairs and substitute every repeated fingerprint with $-1$,
+  in $O\big(\frac{n}{B}\big)$.
+
+  \item Re-sort the pairs by the string index $i$, in
+  $O\big(\frac{n}{B}\log_{\frac{M}{B}} \frac{n}{M}\big)$.
+
+  \item Scan both the sequence and the strings and print every string that has a
+  fingerprint greater or equal than 0, in $O\big(\frac{N}{B}\big)$.
+
+\end{enumerate}
+%
+The total cost of this solution is $O\big(\frac{N}{B} +
+\frac{n}{B}\log_{\frac{M}{B}} \frac{n}{M}\big)$.
