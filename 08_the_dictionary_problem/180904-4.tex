@@ -1,0 +1,35 @@
+\exercise
+
+Describe the Perfect Hash Table for a set of $n$ keys $S$, and prove that it
+takes $O(n)$ space on average.
+
+\solution
+
+A Perfect Hash Table is a two-level hashing scheme where the $n$ keys are hashed
+into $m$ slots in the first level table $T$ by a universal hash function $h$
+and, then, into a secondary hash table $T_j$ by another hash function $h_j$, one
+for each slot $j$ in $T$ and each one of size $n_j^2$, where $n_j$ is the number
+of keys hashing to slot $j$.
+
+If we store the $n$ keys into an hash table of size $m = n$, the expected size
+of all sub-tables $T_j$ is less than $2n$ since
+%
+\begin{align*}
+  \mathbb{E}\Bigg[\sum_{j=0}^{m-1} n_j^2\Bigg] &=
+  \mathbb{E}\Bigg[\sum_{j=0}^{m-1} \left(n_j + 2 {{n_j}\choose{2}}\right)\Bigg]
+  \tag{$\forall a > 0.\ a^2 = a + 2{a \choose 2}$} \\ &=
+  \mathbb{E}\Bigg[\sum_{j=0}^{m-1} n_j\Bigg] +
+  2\mathbb{E}\Bigg[\sum_{j=0}^{m-1} {{n_j}\choose{2}}\Bigg] \\ &=
+  n + 2\mathbb{E}\Bigg[\sum_{j=0}^{m-1} {{n_j}\choose{2}}\Bigg]\ .
+  \tag{$\sum_{j=0}^{m-1} n_j = n$}
+\end{align*}
+%
+The term $n_j \choose 2$ is the number of collisions among the $n_j$ keys. We
+can expect the sum of all collisions to be at most
+%
+\begin{align*}
+  {n \choose 2}\frac{1}{m} = \frac{n(n - 1)}{2m} = \frac{n - 1}{2}
+\end{align*}
+%
+since $n = m$. Therefore, the total space is less than $n + 2\frac{n - 1}{2} =
+2n - 1$.
