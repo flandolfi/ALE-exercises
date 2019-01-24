@@ -1,0 +1,42 @@
+\exercise
+
+Prove that in an undirected cuckoo graph of $r$ nodes and $n$ edges, the
+probability that two nodes are connected by a path of length $L$ is at most
+$c^{-L}/r$, when $r \ge 2cn$.
+
+\solution
+
+We proceed by induction on $L$ (which is assumed to be strictly positive):
+%
+\begin{description}[labelindent=1cm, leftmargin=1.5cm]
+
+  \item[\bf Base case.] When $L = 1$, we are proving the existence of an
+  undirected edge $(i, j)$ in the cuckoo graph. For every $k$, the probability
+  $p_k$ that $h_1(k) = h_2(k)$ is less or equal than $1/r^2$, and since we are
+  considering undirected edges, we have the cases $(h_1(k), h_2(k))$ and
+  $(h_2(k), h_1(k))$, so $\forall k.\ p_k \le 2/r^2$. Summing for all keys we
+  obtain $$\sum_{k \in S} p_k = \sum_{k \in S} \frac{2}{r^2} = \frac{2n}{r^2}
+  \le  \frac{c^{-1}}{r}\ .$$
+
+  \item[\bf Inductive case.] When $L > 1$, we are proving that there exists an
+  undirected path from node $i$ to $j$ of length no less than $L$, which can be
+  reformulate as
+  %
+  \begin{itemize}
+
+    \item there exists an undirected path of length $L - 1$ from node $i$ to $z$
+    (which does not pass through $j$);
+
+    \item there is a path from node $z$ to $j$.
+
+  \end{itemize}
+  %
+  The first one holds by inductive hypothesis with probability at most $c^{-(L -
+  1)/r = c^{1 - L}/r}$. The second one holds as in the base case with
+  probability at most $c^{-1}/r$. Combining them together we get $$\frac{c^{1 -
+  L}}{r}\cdot\frac{c^{-1}}{r} = \frac{c^L}{r^2}\ .$$ This represents the
+  probability that there exists a path from node $i$ to node $j$ that pass
+  through a given node $z$. Summing this probability for each $z$ we obtain
+  $$\sum_z \frac{c^L}{r^2} = \frac{rc^L}{r^2} = \frac{c^L}{r}\ .$$
+
+\end{description}
