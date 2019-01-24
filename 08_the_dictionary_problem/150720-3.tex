@@ -1,0 +1,20 @@
+\exercise
+
+Let us given a Bloom Filter with $k = 2$ hash functions and $n = 2^{20}$ items.
+Show the calculation that allows to derive the size $m$ such that the error rate
+of the resulting Bloom Filter is less than 1\% (note that $k$ is fixed here).
+
+\solution
+
+We have that the probability of a false positive on a Bloom Filter of size $m$
+and $k$ hash functions is $$p_{err} \approx \left(1 - e^{-\frac{kn}{m}}
+\right)^k\ ,$$ where $n$ is the number of keys in the dictionary. We can make
+this probability lower than 1\% by fixing $k$ to 2 and make this inequality as a
+function of $m$, as follows
+%
+\begin{align*}
+  p_{err} &\approx \left(1 - e^{-\frac{2n}{m}} \right)^2 \le \frac{1}{100} \\
+  &\Rightarrow 1 - e^{-\frac{2n}{m}} \le \frac{1}{10} \\
+  &\equiv -\frac{2n}{m} \ge \ln \frac{9}{10} \\
+  &\equiv m \ge \frac{2n}{\ln 10 - \ln 9} \approx 18.98 \cdot n\ .
+\end{align*}
