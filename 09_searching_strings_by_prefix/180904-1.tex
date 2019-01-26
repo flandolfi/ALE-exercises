@@ -158,8 +158,8 @@ Let us given the binary strings $S = \{ 0001100, 0001110, 0011, 0010, 101, 111
     indexed by the Patricia trie), which is $\ell = 1$. The Patricia trie is now
     traversed upward to find the mismatching position $S_0[\ell + 1]$, which is
     in the leftmost edge branching from the root node. Since $P_1[\ell + 1] >
-    S_0[\ell + 1]$, $P_1$ lies at the right of that subtree, so $S_2
-    <_{\text{\sc lex}} P_1 <_{\text{\sc lex}} S_4$.
+    S_0[\ell + 1]$, $P_1$ lies at the right of that subtree, so $S_2 \prec P_1
+    \prec S_4$.
 
     \item[$P_2$:] We first traverse the Patricia tree comparing the single
     characters on the edge of the trie, which produces a partial match on the
@@ -167,8 +167,8 @@ Let us given the binary strings $S = \{ 0001100, 0001110, 0011, 0010, 101, 111
     do not have a match after the second edge (we have a mismatch on $P_2$'s
     endline charachter), we choose any descendant leaf after the traversed node
     (say $S_1 = 0001110$). We compare $P_2$ and $S_1$ and find the length of
-    their shared prefix, which is still $\ell = 1$. As before, $S_2 <_{\text{\sc
-    lex}} P_2 <_{\text{\sc lex}} S_4$.
+    their shared prefix, which is still $\ell = 1$. As before, $S_2 \prec P_2
+    \prec S_4$.
 
   \end{itemize}
 \end{itemize}

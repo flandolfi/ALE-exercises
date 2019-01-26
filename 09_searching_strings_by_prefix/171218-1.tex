@@ -20,7 +20,7 @@ trie built over $S$. The lexicographic searches are done as follows:
   The Patricia trie is now traversed upward to find the mismatching position
   $S_0[\ell + 1]$, which is in the leftmost edge branching from the root node.
   Since $P_1[\ell + 1] < S_0[\ell + 1]$, $P_1$ lies at the left of that subtree,
-  so $\forall s \in S.\ P_1 <_{\text{\sc lex}} s$.
+  so $\forall s \in S.\ P_1 \prec s$.
 
   \item[$P_2$:] We first traverse the Patricia tree comparing the single
   characters on the edge of the trie, which produces a match only on the first
@@ -31,8 +31,7 @@ trie built over $S$. The lexicographic searches are done as follows:
   upward to find the mismatching position $S_1[\ell + 1]$, which is a branching
   character. Since $\text{\tt a} < P_2[\ell + 1] < \text{\tt c}$, $P_2$ lies
   between the rightmost string of the {\tt a}-branching subtree and the leftmost
-  string of the {\tt c}-branching subtree, so $S_0 <_{\text{\sc lex}} P_2
-  <_{\text{\sc lex}} S_1$.
+  string of the {\tt c}-branching subtree, so $S_0 \prec P_2 \prec S_1$.
 
 \end{itemize}
 %
