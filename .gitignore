@@ -1,4 +1,5 @@
 .atom-build.yml
+.vscode/*
 out/*
 all.tex
 .DS_Store
