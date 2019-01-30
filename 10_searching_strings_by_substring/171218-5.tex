@@ -8,7 +8,7 @@ queries between pair of leaves.
 
 \solution
 
-\begin{figure}[b  ]
+\begin{figure}[b]
   \centering
   \begin{tikzpicture}[
     grow=down,
@@ -163,7 +163,7 @@ Finally, to compute the LCA of two leaves $L$ and $R$, we proceed as follows:
   \item If $l$ and $r$ fall in two separate blocks, we first compute the minimum
   w.r.t. the blocks between the ones containing $l$ and $r$, by comparing the
   values of $D$ at positions $M_h[l]$ and $M_h[r - 2^h]$, with $h = \lfloor
-  \log_2 (r - l)\rfloor$. Then we we retrieve the minimum for the blocks
+  \log_2 (r - l + 1)\rfloor$. Then we we retrieve the minimum for the blocks
   containing $l$ and $r$ by checking $T[l - o_L, d, \Delta_{k_L}]$ and $T[0, r -
   o_R, \Delta_{k_R}]$, with $o_L$ and $o_R$ defined as in the previous point.
   The overall minimum is found with a simple comparison.
