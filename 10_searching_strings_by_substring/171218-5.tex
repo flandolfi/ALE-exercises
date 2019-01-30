@@ -66,7 +66,14 @@ two leaf nodes, we first have to build the following data structures:
   \begin{table}[t]
     \centering
     \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-      \hline
+      \multicolumn{1}{c}{} & \multicolumn{1}{c}{\tiny 1} &
+      \multicolumn{1}{c}{\tiny 2} & \multicolumn{1}{c}{\tiny 3} &
+      \multicolumn{1}{c}{\tiny 4} & \multicolumn{1}{c}{\tiny 5} &
+      \multicolumn{1}{c}{\tiny 6} & \multicolumn{1}{c}{\tiny 7} &
+      \multicolumn{1}{c}{\tiny 8} & \multicolumn{1}{c}{\tiny 9} &
+      \multicolumn{1}{c}{\tiny 10} & \multicolumn{1}{c}{\tiny 11} &
+      \multicolumn{1}{c}{\tiny 12} & \multicolumn{1}{c}{\tiny 13} &
+      \multicolumn{1}{c}{\tiny 14} & \multicolumn{1}{c}{\tiny 15} \\\hline
       Euler Tour & 1 & 2 & $x$ & 2 & $y$ & 2 & $z$ & 2 & 1 & 2 & $u$ & 2 & $v$ & 2 & 1 \\\hline
              $D$ & 1 & 2 & 3 & 2 & 3 & 2 & 3 & 2 & 1 & 2 & 3 & 2 & 3 & 2 & 1 \\\hline\hline
         $\Delta$ & \multicolumn{1}{c}{1} & \multicolumn{1}{c|}{$+$} &
@@ -77,23 +84,27 @@ two leaf nodes, we first have to build the following data structures:
                    \multicolumn{1}{c}{3} & \multicolumn{1}{c|}{$-$} &
                    \multicolumn{1}{c}{3} & \multicolumn{1}{c|}{$-$} &
                    \multicolumn{1}{c|}{1} \\\hline
-           $M_1$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{2} &
-                   \multicolumn{2}{c|}{2} & \multicolumn{2}{c|}{2} &
-                   \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{2} &
-                   \multicolumn{2}{c|}{2} & \multicolumn{2}{c|}{1} \\
-           $M_2$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{2} &
-                   \multicolumn{2}{c|}{2} & \multicolumn{2}{c|}{1} &
-                   \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{2} &
-                   \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{--} \\
-           $M_3$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{1} &
-                   \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{1} &
-                   \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{--} &
-                   \multicolumn{2}{c|}{--} & \multicolumn{2}{c|}{--} \\\hline
+           $M_1$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{4} &
+                   \multicolumn{2}{c|}{6} & \multicolumn{2}{c|}{8} &
+                   \multicolumn{2}{c|}{9} & \multicolumn{2}{c|}{12} &
+                   \multicolumn{2}{c|}{14} & \multicolumn{1}{c|}{15} \\
+           $M_2$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{4} &
+                   \multicolumn{2}{c|}{6} & \multicolumn{2}{c|}{9} &
+                   \multicolumn{2}{c|}{9} & \multicolumn{2}{c|}{12} &
+                   \multicolumn{2}{c|}{15} & \multicolumn{1}{c|}{--} \\
+           $M_3$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{9} &
+                   \multicolumn{2}{c|}{9} & \multicolumn{2}{c|}{9} &
+                   \multicolumn{2}{c|}{9} & \multicolumn{2}{c|}{--} &
+                   \multicolumn{2}{c|}{--} & \multicolumn{1}{c|}{--} \\
+           $M_4$ & \multicolumn{2}{c|}{1} & \multicolumn{2}{c|}{--} &
+                   \multicolumn{2}{c|}{--} & \multicolumn{2}{c|}{--} &
+                   \multicolumn{2}{c|}{--} & \multicolumn{2}{c|}{--} &
+                   \multicolumn{2}{c|}{--} & \multicolumn{1}{c|}{--} \\\hline
     \end{tabular}
 
     \caption{The values of the Euler Tour, the depth array $D$, the pattern
-    array $\Delta$ and the sparse table $M$. In \Delta, ``+'' represents an
-    increment and ``--'' a decrement. The last element of $\Delta$ may be
+    array $\Delta$ and the sparse table $M$. In \Delta, ``$+$'' represents an
+    increment and ``$-$'' a decrement. The last element of $\Delta$ may be
     considered as an all-ascending block (i.e., $(1, +)$).}
 
     \label{tab:euler-tour}
@@ -109,11 +120,14 @@ two leaf nodes, we first have to build the following data structures:
     = 2, \dots, d.\ \Delta_k[i] = D_k[i] - D_k[i] \in \{+1, -1\}$. This array
     will have size $O(e) = O(n)$;
 
-    \item the sparse matrix $M$, with each row $i \in [1, \log_2 2e]$ defined as
-    $M_{i, j} = \min_{k = 0, \dots, 2^i - 1} D[j + k]$. This matrix will have
-    size $O(\frac{e}{\log e}\log\frac{e}{\log e}) = O(e) = O(n)$.
+    \item the sparse matrix $M$, with each row $i \in [1, \log_2 |\Delta|]$
+    defined as $$M_{i, j} = \operatorname*{argmin}_{k = j, \dots, j + 2^i - 1}
+    D[k]\ .$$ This matrix will have size $O(\frac{e}{\log e}\log\frac{e}{\log
+    e}) = O(e) = O(n)$.
 
   \end{itemize}
+  %
+  Both $\Delta$ and $M$ are depicted in \autoref{tab:euler-tour}.
 
   \item We construct a table $T$ for each triple $(i, j, p)$, where $i$ and $j$
   are indexes such that $1 \le i < j \le d$ and $p$ is a binary pattern such
@@ -147,11 +161,11 @@ Finally, to compute the LCA of two leaves $L$ and $R$, we proceed as follows:
   the Euler Tour with $t + o$.
 
   \item If $l$ and $r$ fall in two separate blocks, we first compute the minimum
-  w.r.t. the blocks between the ones containing $l$ and $r$, by comparing
-  $M_h[l]$ and $M_h[r - 2^h]$, with $h = \lfloor \log_2 (r - l)\rfloor$. Then we
-  we retrieve the minimum for the blocks containing $l$ and $r$ by checking $T[l
-  - o_L, d, \Delta_{k_L}]$ and $T[0, r - o_R, \Delta_{k_R}]$, with $o_L$ and
-  $o_R$ defined as in the previous point. The overall minimum is found with a
-  simple comparison.
+  w.r.t. the blocks between the ones containing $l$ and $r$, by comparing the
+  values of $D$ at positions $M_h[l]$ and $M_h[r - 2^h]$, with $h = \lfloor
+  \log_2 (r - l)\rfloor$. Then we we retrieve the minimum for the blocks
+  containing $l$ and $r$ by checking $T[l - o_L, d, \Delta_{k_L}]$ and $T[0, r -
+  o_R, \Delta_{k_R}]$, with $o_L$ and $o_R$ defined as in the previous point.
+  The overall minimum is found with a simple comparison.
 
 \end{enumerate}
