@@ -30,4 +30,5 @@ S_i - S_{i-1}}{\min_{i = 2, \dots, n} S_i - S_{i-1}},$$ so this algorithm
 performs better than the binary search when the elements are uniformly
 distributed. In the worst case, when all the elements in $S$ ends up in the same
 bin, this algorithm has the same time complexity of the binary search (but using
-an extra $O(n)$ space, while the binary search is in-place).
+an extra $O(n)$ space, while the binary search is in-place). To enforce an
+uniform distribution, we can apply a random permutation to the data beforehand.
