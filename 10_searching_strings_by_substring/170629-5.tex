@@ -1,0 +1,35 @@
+\exercise
+
+Show and prove the two properties that allow the LCP-algorithm to run in time
+linear in the string length. Comment on how they are used in that algorithm to
+compute the LCP-array.
+
+\solution
+
+Given the suffix array $SA$ for a given string $T$, the two properties are the
+following:
+%
+\begin{align}\label{eq:lcp-1}
+  \forall x < y.\ \text{LCP}\big(\text{\it suff}_{SA[y-1]}, \text{\it
+  suff}_{SA[y]}\big) \ge \text{LCP}\big(\text{\it suff}_{SA[x]}, \text{\it
+  suff}_{SA[y]}\big)\ ;
+\end{align}
+%
+\begin{align}\label{eq:lcp-2}
+    &\text{LCP}\big(\text{\it suff}_{SA[y-1]}, \text{\it suff}_{SA[y]}\big) > 0
+    \\\Rightarrow\ &\text{LCP}\big(\text{\it suff}_{SA[y-1] + 1}, \text{\it
+    suff}_{SA[y] + 1}\big) = \text{LCP}\big(\text{\it suff}_{SA[y-1]}, \text{\it
+    suff}_{SA[y]}\big) - 1\ .\nonumber
+\end{align}
+%
+\autoref{eq:lcp-1} holds since the suffixes of $T$ are lexicographically
+ordered, so as we go farther from $SA[y]$ we reduce the length of the shared
+prefix, while \autoref{eq:lcp-2} holds since in the right-hand side of the
+equality we are just eliding the first character of the common prefix between
+the two strings in the left-hand side.
+
+These properties are exploited in Kasai's algorithm since, scanning every suffix
+from the longest to the shortest, it avoids recomputing the common prefixes
+shared by $\text{\it suff}_p$, $\text{\it suff}_q$ and $\text{\it suff}_{p+1}$,
+$\text{\it suff}_{q+1}$, where $p$ and $q$ are two adjacent suffixes in the
+suffix array.
