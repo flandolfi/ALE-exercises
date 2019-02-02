@@ -18,12 +18,12 @@
 %
 \begin{enumerate}
 
-  \item We can construct two arrays $E$ and $D$ of size $2e + 1 = O(n)$ where $e$ is
-  the number of the edges of the tree, such that  $E$ contains the Euler Tour of
-  the tree and $D$ the depth of each node in $E$. Solving a LCA problem over two
-  leaves $L$ and $R$ of the tree is the same as solving the RMQ over the array
-  $D[l, r]$, where $l$ and $r$ are, respectively, the positions of the leftmost
-  and rightmost occurrence of $L$ and $R$ in $E$.
+  \item We can construct two arrays $E$ and $D$ of size $2e + 1 = O(n)$ where
+  $e$ is the number of the edges of the tree, such that  $E$ contains the Euler
+  Tour of the tree and $D$ the depth of each node in $E$. Solving a LCA problem
+  over two leaves $L$ and $R$ of the tree is the same as solving the RMQ over
+  the array $D[l, r]$, where $l$ and $r$ are, respectively, the positions of the
+  leftmost and rightmost occurrence of $L$ and $R$ in $E$.
 
   \item Given the previous arrays $E$ and $D$, we build the matrix $M \in
   \mathbb{N}^{e \times \log_2 e} = O(n\log n)$ such that $$M_{i, j} =
