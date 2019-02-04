@@ -1,0 +1,49 @@
+\exercise
+
+Assume you are given a $(s,c)$-dense code over 3 bits, with $s = 5$ and $c = 3$.
+%
+\begin{enumerate}
+
+  \item Infer, via the formulas about $(s,c)$-dense codes, how many bits are
+  needed for the 13th codeword.
+
+  \item Show the 13th codeword.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item With 3 bits we can encode the first $s = 5$ integers. With 6 bits we can
+  encode the following $sc = 15$ integers, i.e., form 5 to 19. Thus, to encode
+  12 (the 13th codeword starting from 0) we need 6 bits.
+
+  \item Instead of enumerating every codeword, we may use \autoref{alg:scdc}.
+  Calling $\text{\sc Encode}(13 - 1, 5, 3)$ we obtain the output ``{\tt 010
+  110}'', which is the codeword of 12 in reverse order (in blocks of 3 bits). So
+  $C_{12} = \text{\tt 110 010}$.
+  %
+  \begin{algorithm}[t]
+
+  \caption{$(s,c)$-dense encoding. Given the rank of an integer $i$ (starting
+  from 0), outputs its codeword from right to left, in blocks of $\log_2 (s +
+  c)$ bits\protect\footnotemark.}
+
+  \label{alg:scdc}
+
+  \begin{algorithmic}[1]
+  \Procedure{Encode}{$i$, $s$, $c$}
+    \State {\bf output} $(i \bmod s)_2$
+    \State $x \gets i \div s$
+    \While{$s > 0$}
+      \State $x \gets x - 1$
+      \State {\bf output} $(s + (i \bmod c))_2$
+      \State $x \gets x \div s$
+    \EndWhile
+  \EndProcedure
+  \end{algorithmic}
+  \end{algorithm}
+  \footnotetext{From \url{http://vios.dc.fi.udc.es/codes/semistatic.html}.}
+
+\end{enumerate}
