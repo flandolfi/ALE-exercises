@@ -34,7 +34,7 @@ encode them based on
       \end{tabular}
     \end{center}
     %
-    The array $L$ will store the $\ell = \lceil\log_2 u/n\rceil$ least
+    The array $L$ will store the $\ell = \lceil\log_2 u/n\rceil = 3$ least
     significant digits of each representation, i.e., $$L = 011\ 110\ 000\ 011\
     100\ 101\ 110\ .$$ The array $H$ will store instead the number of
     occurrences of every string of $b - \ell$ bits in the most significant
@@ -110,28 +110,28 @@ encode them based on
       \centering
       \begin{tabular}{c||c|c}
         $S''_i$ & \multicolumn{2}{c}{$(S''_i)_2$} \\\hline
-        0 & 0 & 00 \\
-        2 & 0 & 10 \\
-        3 & 0 & 11 \\
-        5 & 1 & 01 \\
-        5 & 1 & 01 \\
-        5 & 1 & 01 \\
-        5 & 1 & 01
+        0 & 00 & 0 \\
+        2 & 01 & 0 \\
+        3 & 01 & 1 \\
+        5 & 10 & 1 \\
+        5 & 10 & 1 \\
+        5 & 10 & 1 \\
+        5 & 10 & 1
       \end{tabular}
     \end{minipage}
     %
     \begin{minipage}{0.3\textwidth}
       \centering
       \begin{align*}
-        L'' &=00\ 10\ 11\ 01\ 01\ 01\ 01 \\
-        H'' &= \underbracket{1110}_{0}\ \underbracket{11110}_{1}
+        L'' &=0\ 0\ 1\ 1\ 1\ 1\ 1 \\
+        H' &= \underbracket{10}_{00}\ \underbracket{110}_{01}\ \underbracket{11110}_{01}\ \underbracket{0}_{11}\
       \end{align*}
     \end{minipage}
     \end{center}
     %
-    Now $|L''| + |H''| = 23$, and even adding 7 bits for $\gamma(11)$ and a flag
-    bit to indicate the rank subtraction, we will gain a bit w.r.t. the previous
-    encodings.
+    Now $|L''| + |H''| = 18$, and even adding 7 bits for $\gamma(11)$ and a flag
+    bit to indicate the rank subtraction, we will gain 7 bits w.r.t. the
+    previous encodings.
 
   \end{description}
 
