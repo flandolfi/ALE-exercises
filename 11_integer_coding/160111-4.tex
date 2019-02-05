@@ -1,0 +1,60 @@
+\exercise
+
+Given a sequence of integers $S = (1, 6, 15, 18, 21, 24, 30)$, encode them
+using:
+%
+\begin{itemize}
+  \item Delta encoding;
+  \item Rice code with $k = 3$;
+  \item Elias-Fano encoding.
+\end{itemize}
+
+\solution
+
+Since the sequence $S$ is \emph{increasing}, to achieve a shorter representation
+with $\gamma$, $\delta$ and Rice coding, we preprocess the sequence using GAP
+encoding, obtaining the sequence $S' = (1, 5, 9, 3, 3, 3, 6)$. The codes are
+shown in \autoref{tab:codings}.
+%
+\begin{table}[b]
+  \centering
+  \begin{tabular}{c|c||c|c|c||c|c}
+    $S$ & $S'$ & $\gamma(S')$ & $\delta(S')$ & $R_3(S')$ & \multicolumn{2}{c}{$(S)_2$} \\\hline
+    1  & 1 & 1       & 1        & 1000  & 00 & 001 \\
+    6  & 5 & 00101   & 01101    & 1100  & 00 & 110 \\
+    15 & 9 & 0001001 & 00100001 & 01000 & 01 & 111 \\
+    18 & 3 & 011     & 0101     & 1010  & 10 & 010 \\
+    21 & 3 & 011     & 0101     & 1010  & 10 & 101 \\
+    24 & 3 & 011     & 0101     & 1010  & 11 & 000 \\
+    30 & 6 & 00110   & 01110    & 1101  & 11 & 110 \\
+  \end{tabular}
+
+  \caption{The $\gamma$, $\delta$ and Rice coding for the sequence $S'$ and the
+  binary representation of the sequence $S$ using $b = 5$ bits.}
+  \label{tab:codings}
+
+\end{table}
+
+Since Elias-Fano need an increasing sequence, we need to encode the original $S$
+using $b = \lceil \log_2 S_n \rceil = 5$, (with maximum value $u = 2^b = 32$).
+The resulting binary representation of the elements are shown in
+\autoref{tab:codings}. The array $L$ will store the $\ell = \lceil\log_2
+u/n\rceil = 3$ least significant digits of each representation, i.e., $$L = 001\
+110\ 111\ 010\ 101\ 000\ 110\ .$$ The array $H$ will store instead the number of
+occurrences of every string of $b - \ell$ bits in the most significant digits
+represented in inverse unary code, i.e., $$H = \underbracket{110}_{00}\
+\underbracket{10}_{01}\ \underbracket{110}_{10}\ \underbracket{10}_{11}\ .$$ To
+access the $i$-th item we use a $\text{Select}_1$ data structure over $H$, and
+the array $L$, as follows
+%
+\begin{enumerate}
+
+  \item We compute the upper part of the binary representation with $h =
+  (\text{Select}_1(i, H) - i)_2$;
+
+  \item We retrieve the lower part with $l = L[i]$;
+
+  \item We concatenate the two results, obtaining the original
+  representation $(S_i)_2 = h \oplus l$.
+
+\end{enumerate}
