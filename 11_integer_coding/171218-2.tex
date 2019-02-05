@@ -1,0 +1,178 @@
+\exercise
+
+Given the sequence of integers $S = (11, 14, 16, 19, 20, 21, 22)$, show how to
+encode them based on
+%
+\begin{enumerate}
+  \item Elias-Fano Code;
+  \item Interpolative Code (just one level of recursion, hence 3 numbers).
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item Elias-Fano may produce better results depending on how we preprocess the
+  sequence. In the following we show three options:
+  %
+  \begin{description}[labelindent=0cm, leftmargin=0.5cm]
+
+    \item[{\bf Case 1} {\it (No Preprocessing)}.] We have $n = |S| = 7$ items,
+    which can be represented in $b = \lceil\log_2 S_n\rceil = 5$ bits (with
+    maximum value $u = 2^b = 32$), as in the following table
+    %
+    \begin{center}
+      \begin{tabular}{c||c|c}
+        $S_i$ & \multicolumn{2}{c}{$(S_i)_2$} \\\hline
+        11 & 01 & 011 \\
+        14 & 01 & 110 \\
+        16 & 10 & 000 \\
+        19 & 10 & 011 \\
+        20 & 10 & 100 \\
+        21 & 10 & 101 \\
+        22 & 10 & 110
+      \end{tabular}
+    \end{center}
+    %
+    The array $L$ will store the $\ell = \lceil\log_2 u/n\rceil$ least
+    significant digits of each representation, i.e., $$L = 011\ 110\ 000\ 011\
+    100\ 101\ 110\ .$$ The array $H$ will store instead the number of
+    occurrences of every string of $b - \ell$ bits in the most significant
+    digits represented in inverse unary code, i.e., $$H = \underbracket{0}_{00}\
+    \underbracket{110}_{01}\ \underbracket{111110}_{10}\ \underbracket{0}_{11}\
+    .$$ To access the $i$-th item we use a $\text{Select}_1$ data structure over
+    $H$, and the array $L$, as follows
+    %
+    \begin{enumerate}
+
+      \item We compute the upper part of the binary representation with $h =
+      (\text{Select}_1(i, H) - i)_2$;
+
+      \item We retrieve the lower part with $l = L[i]$;
+
+      \item We concatenate the two results, obtaining the original
+      representation $(S_i)_2 = h \oplus l$.
+
+    \end{enumerate}
+
+
+    \item[{\bf Case 2} {\it (Shift Left)}.] To reduce the value of $u$, we can
+    subtract to each element of $S$ the value of $S_1$ (the minimum), obtaining
+    the new sequence $$S' = (0, 3, 5, 8, 9, 10, 11)\ .$$ Now $b' = \lceil\log_2
+    S'_n\rceil = 4$, $u' = 2^{b'} = 16$ and $\ell' = \lceil\log_2 u'/n\rceil =
+    2$, and the Elias-Fano code becomes
+    %
+    \begin{center}
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \begin{tabular}{c||c|c}
+        $S'_i$ & \multicolumn{2}{c}{$(S'_i)_2$} \\\hline
+        0 & 00 & 00 \\
+        3 & 00 & 11 \\
+        5 & 01 & 01 \\
+        8 & 10 & 00 \\
+        9 & 10 & 01 \\
+        10 & 10 & 10 \\
+        11 & 10 & 11
+      \end{tabular}
+    \end{minipage}
+    %
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \begin{align*}
+        L' &= 00\ 11\ 01\ 00\ 01\ 10\ 11 \\
+        H' &= \underbracket{110}_{00}\ \underbracket{10}_{01}\ \underbracket{11110}_{01}\ \underbracket{0}_{11}\
+      \end{align*}
+    \end{minipage}
+    \end{center}
+    %
+    The new code is shorter than the previous one since $|L| + |H| = 32 > |L'| +
+    |H'| = 25$. We have to keep in mind that we still have to encode $S_1 = 11$
+    to restore the original sequence, which will need at least $\lceil\log_2
+    11\rceil = 4$ bits. For example, prepending a $\gamma$-code of the minimum
+    to the Elias-Fano code will require, in this example, $|\gamma(11)| =
+    |0001011| = 7$ bits, which will make the preprocess useless, since $|L| +
+    |H| = |L'| + |H'| + 7$.
+
+
+    \item[{\bf Case 3} {\it (Giorgio's
+    Favorite\footnotemark)}.]\footnotetext{From: Vigna, S., 2013, February.
+    Quasi-succinct indices. In \emph{Proceedings of the sixth ACM international
+    conference on Web search and data mining} (pp. 83-92). ACM.} Since
+    Elias-Fano works even with \emph{non-decreasing} sequences, we can subtract
+    to each element of $S'$ its rank (starting from 0), obtaining $$S'' = (0, 2,
+    3, 5, 5, 5, 5)\ .$$ Now $b'' = \lceil\log_2 S''_n\rceil = 3$, $u'' = 2^{b''}
+    = 8$ and $\ell'' = \lceil\log_2 u''/n\rceil = 2$, and the Elias-Fano code
+    becomes
+    %
+    \begin{center}
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \begin{tabular}{c||c|c}
+        $S''_i$ & \multicolumn{2}{c}{$(S''_i)_2$} \\\hline
+        0 & 0 & 00 \\
+        2 & 0 & 10 \\
+        3 & 0 & 11 \\
+        5 & 1 & 01 \\
+        5 & 1 & 01 \\
+        5 & 1 & 01 \\
+        5 & 1 & 01
+      \end{tabular}
+    \end{minipage}
+    %
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \begin{align*}
+        L'' &=00\ 10\ 11\ 01\ 01\ 01\ 01 \\
+        H'' &= \underbracket{1110}_{0}\ \underbracket{11110}_{1}
+      \end{align*}
+    \end{minipage}
+    \end{center}
+    %
+    Now $|L''| + |H''| = 23$, and even adding 7 bits for $\gamma(11)$ and a flag
+    bit to indicate the rank subtraction, we will gain a bit w.r.t. the previous
+    encodings.
+
+  \end{description}
+
+  \item The first three steps of Interpolative Code are the following
+  %
+  \begin{enumerate}
+
+    \item $\langle l = 1, r = 7, low = 11, hi = 22 \rangle$:
+    %
+    \begin{itemize}
+      \item $m = \left\lfloor \frac{l + r}{2} \right\rfloor = 4$
+      \item $a = low + m - l = 14$
+      \item $b = hi + m - r = 19$
+      \item[$\implies$] $\text{\sc BinaryCode}(S_4, a, b) =
+      \text{`{\tt 101}'}$
+    \end{itemize}
+
+    \item $\langle l' = 1, r' = m - 1 = 3, low' = 11, hi' = S_4 - 1 = 18
+    \rangle$:
+    %
+    \begin{itemize}
+      \item $m' = \left\lfloor \frac{l' + r'}{2} \right\rfloor = 2$
+      \item $a' = low' + m' - l' = 12$
+      \item $b' = hi' + m' - r' = 17$
+      \item[$\implies$] $\text{\sc BinaryCode}(S_2, a', b') =
+      \text{`{\tt 010}'}$
+    \end{itemize}
+
+    \item $\langle l'' = m + 1 = 5, r'' = 7, low'' = S_4 + 1 = 20, hi'' = 22
+    \rangle$:
+    %
+    \begin{itemize}
+      \item $m'' = \left\lfloor \frac{l'' + r''}{2} \right\rfloor = 6$
+      \item $a'' = low'' + m'' - l'' = 21$
+      \item $b'' = hi'' + m'' - r'' = 21$
+      \item[$\implies$] $\text{\sc BinaryCode}(S_6, a'', b'') = \text{`'}$
+    \end{itemize}
+
+  \end{enumerate}
+  %
+  The final code will be $\text{`{\tt 101}'},\ \text{`{\tt 010}'},\ \dots, \
+  \text{`'},\ \dots$\ .
+
+\end{enumerate}
