@@ -18,15 +18,15 @@ shown in \autoref{tab:codings}.
 %
 \begin{table}[b]
   \centering
-  \begin{tabular}{c|c||c|c|c||c|c}
-    $S$ & $S'$ & $\gamma(S')$ & $\delta(S')$ & $R_3(S')$ & \multicolumn{2}{c}{$(S)_2$} \\\hline
-    1  & 1 & 1       & 1        & 1000  & 00 & 001 \\
-    6  & 5 & 00101   & 01101    & 1100  & 00 & 110 \\
-    15 & 9 & 0001001 & 00100001 & 01000 & 01 & 111 \\
-    18 & 3 & 011     & 0101     & 1010  & 10 & 010 \\
-    21 & 3 & 011     & 0101     & 1010  & 10 & 101 \\
-    24 & 3 & 011     & 0101     & 1010  & 11 & 000 \\
-    30 & 6 & 00110   & 01110    & 1101  & 11 & 110 \\
+  \begin{tabular}{c|c||r@{\hskip 5pt}l|r@{\hskip 5pt}l|r@{\hskip 5pt}l||r@{\hskip 5pt}l}
+    $S$ & $S'$ & \multicolumn{2}{c|}{$\gamma(S')$} & \multicolumn{2}{c|}{$\delta(S')$} & \multicolumn{2}{c||}{$R_3(S')$} & \multicolumn{2}{c}{$(S)_2$} \\\hline
+    1  & 1 & 1 &        & 1 &         & 1 & 000  & 00 & 001 \\
+    6  & 5 & 001 & 01   & 011 & 01    & 1 & 100  & 00 & 110 \\
+    15 & 9 & 0001 & 001 & 00100 & 001 & 01 & 000 & 01 & 111 \\
+    18 & 3 & 01 & 1     & 010 & 1     & 1 & 010  & 10 & 010 \\
+    21 & 3 & 01 & 1     & 010 & 1     & 1 & 010  & 10 & 101 \\
+    24 & 3 & 01 & 1     & 010 & 1     & 1 & 010  & 11 & 000 \\
+    30 & 6 & 001 & 10   & 011 & 10    & 1 & 101  & 11 & 110 \\
   \end{tabular}
 
   \caption{The $\gamma$, $\delta$ and Rice coding for the sequence $S'$ and the
