@@ -126,5 +126,30 @@ Let us given the symbols and their probabilities: $p_a = p_b = 0.1$, $p_c =
 
   \item The first three codewords are $c$, $b$, $e$:
   $$\underbracket{10}_c\underbracket{001}_b\underbracket{011}_e011100\dots$$
+  %
+  \begin{enumerate}
+    \item $l \gets 1$, $v \gets 1$
+    %
+    \begin{itemize}
+      \item $v < \text{\tt fc}[l] \implies v \gets 2 \times v + 0 = 2,\ l \gets l + 1 = 2$
+      \item $v \ge \text{\tt fc}[l] \implies \text{\bf output \tt sym}[l, v - \text{\tt fc}[l]] = c$
+    \end{itemize}
+
+    \item $l \gets 1$, $v \gets 0$
+    %
+    \begin{itemize}
+      \item $v < \text{\tt fc}[l] \implies v \gets 2 \times v + 0 = 0,\ l \gets l + 1 = 2$
+      \item $v < \text{\tt fc}[l] \implies v \gets 2 \times v + 1 = 1,\ l \gets l + 1 = 3$
+      \item $v \ge \text{\tt fc}[l] \implies \text{\bf output \tt sym}[l, v - \text{\tt fc}[l]] = b$
+    \end{itemize}
+
+    \item $l \gets 1$, $v \gets 0$
+    %
+    \begin{itemize}
+      \item $v < \text{\tt fc}[l] \implies v \gets 2 \times v + 1 = 1,\ l \gets l + 1 = 2$
+      \item $v < \text{\tt fc}[l] \implies v \gets 2 \times v + 1 = 3,\ l \gets l + 1 = 3$
+      \item $v \ge \text{\tt fc}[l] \implies \text{\bf output \tt sym}[l, v - \text{\tt fc}[l]] = e$
+    \end{itemize}
+  \end{enumerate}
 
 \end{enumerate}
