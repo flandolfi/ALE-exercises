@@ -1,0 +1,18 @@
+\exercise
+
+Let us given symbols and probabilities: $p_a = 0.2$, $p_b = p_c = 0.4$. Compress
+the first 3 symbols of the text $T = abc$ via Arithmetic code.
+
+\solution
+
+Starting with $l_0 = 0$ and $s_0 = 1$, and given the cumulative probabilities
+$f_a =0$, $f_b = 0.2$ and $f_c = 0.6$, we get
+%
+\begin{itemize}
+  \item[$a$.] $s_1 = s_0 \times p_a = 0.2$ \\ $l_1 = l_0 + s_0 \times f_a = 0$
+  \item[$b$.] $s_2 = s_1 \times p_b = 0.08$ \\ $l_2 = l_1 + s_1 \times f_b = 0.04$
+  \item[$c$.] $s_3 = s_2 \times p_c = 0.032$ \\ $l_3 = l_2 + s_2 \times f_c = 0.088$
+\end{itemize}
+%
+The output will be a pair such as $\langle x, 3 \rangle$, where $x \in [l_3, l_3
++ s_3) \equiv [0.088, 0.12)$, e.g., $\langle 0.1, 3 \rangle$.
