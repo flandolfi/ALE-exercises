@@ -1,0 +1,493 @@
+\exercise
+
+\begin{enumerate}
+
+  \item Construct a Treap for the set of pairs $\big\{ \langle 3, 5 \rangle$,
+  $\langle 9, 3 \rangle$, $\langle 15, 9\rangle$, $\langle 5, 1 \rangle$,
+  $\langle 10, 4 \rangle$, $\langle 4, 8 \rangle$, $\langle 2, 1 \rangle$,
+  $\langle 7, 7 \rangle \big\}$ using a min-heap over the $y$-coordinate (i.e.
+  the priority). The $x$-coordinate is the key.
+
+  \item Show what happens to the treap when the pair $\langle 1, 2 \rangle$ is
+  inserted.
+
+  \item Show the execution of a split at the key 6.
+
+\end{enumerate}
+
+\solution
+
+\begin{enumerate}
+
+  \item \autoref{fig:treap-1} shows the treap for the given keys and priorities.
+
+  \item \autoref{fig:treap-2} shows the rotations needed to insert $\langle 1, 2
+  \rangle$.
+
+  \item \autoref{fig:treap-3} shows the rotations needed to split the treap at
+  key 6.
+
+\end{enumerate}
+
+\pagebreak
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+    child {
+      node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+      edge from parent[-]
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{Treap of the given keys and priorities.}
+
+  \label{fig:treap-1}
+\end{figure}
+%
+\begin{figure}[t]
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+    child {
+      node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+      child {
+        node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+        edge from parent[-]
+      }
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+      edge from parent[-]
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure} \\
+  \vspace{0.3cm}
+
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+    child {
+      node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+      edge from parent[-]
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure} \\
+  \vspace{0.3cm}
+
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    child {
+      node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+      child {
+        node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+        edge from parent[-]
+      }
+      child {
+        node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+        edge from parent[-]
+      }
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure}
+
+  \caption{Insertion of node $\langle 1, 2 \rangle$.}
+
+  \label{fig:treap-2}
+\end{figure}
+%
+\begin{figure}[t]
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    child {
+      node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+      child {
+        node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+        edge from parent[-]
+      }
+      child {
+        node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+        edge from parent[-]
+      }
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      child {
+        node {\scriptsize 6 \nodepart{lower} \scriptsize $\bot$}
+        edge from parent[-]
+      }
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure} \\
+  \vspace{0.3cm}
+
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    child {
+      node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+      child {
+        node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+        edge from parent[-]
+      }
+      child {
+        node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+        edge from parent[-]
+      }
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node {\scriptsize 6 \nodepart{lower} \scriptsize $\bot$}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    child {
+      node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure} \\
+  \vspace{0.3cm}
+
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+  child {
+    node {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    child {
+      node {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+      child {
+        node {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+        edge from parent[-]
+      }
+      child {
+        node {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+        edge from parent[-]
+      }
+    }
+    edge from parent[-]
+  }
+  child {
+    node {\scriptsize 6 \nodepart{lower} \scriptsize $\bot$}
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    child {
+      node {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+      child {
+        node {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+        edge from parent[-]
+      }
+      child {
+        node {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+        child {
+          node[draw=none, circle] {}
+          edge from parent[draw=none]
+        }
+        child {
+          node {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+          edge from parent[-]
+        }
+        edge from parent[-]
+      }
+      edge from parent[-]
+    }
+    edge from parent[-]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure} \\
+  \vspace{0.3cm}
+
+  \begin{subfigure}{\linewidth}
+  \centering
+  \begin{tikzpicture}[
+    grow=down,
+    every node/.style={circle split, draw, inner sep = 2pt, minimum size = 23pt},
+    level/.style={sibling distance = 6cm/#1, level distance = 1.1cm}
+  ]
+  \node[dashed] {\scriptsize 6 \nodepart{lower} \scriptsize $\bot$}
+  child {
+    node[solid] {\scriptsize 5 \nodepart{lower} \scriptsize 1}
+    child {
+      node[solid] {\scriptsize 1 \nodepart{lower} \scriptsize 2}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node[solid] {\scriptsize 3 \nodepart{lower} \scriptsize 5}
+        child {
+          node[solid] {\scriptsize 2 \nodepart{lower} \scriptsize 11}
+          edge from parent[-]
+        }
+        child {
+          node[solid] {\scriptsize 4 \nodepart{lower} \scriptsize 8}
+          edge from parent[-]
+        }
+      }
+      edge from parent[-, solid]
+    }
+    child {
+      node[draw=none, circle] {}
+      edge from parent[draw=none]
+    }
+    edge from parent[dashed]
+  }
+  child {
+    node[solid] {\scriptsize 9 \nodepart{lower} \scriptsize 3}
+    child {
+      node[solid] {\scriptsize 7 \nodepart{lower} \scriptsize 7}
+      edge from parent[-, solid]
+    }
+    child {
+      node[solid] {\scriptsize 10 \nodepart{lower} \scriptsize 4}
+      child {
+        node[draw=none, circle] {}
+        edge from parent[draw=none]
+      }
+      child {
+        node[solid] {\scriptsize 15 \nodepart{lower} \scriptsize 9}
+        edge from parent[-]
+      }
+      edge from parent[-, solid]
+    }
+    edge from parent[dashed]
+  };
+  \end{tikzpicture}
+
+  \caption{}
+  \end{subfigure}
+
+  \caption{Split of the treap at key 6.}
+
+  \label{fig:treap-3}
+\end{figure}
