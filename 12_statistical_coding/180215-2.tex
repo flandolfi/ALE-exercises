@@ -1,0 +1,25 @@
+\exercise
+
+Let us given symbols and probabilities: $p_a = 0.5$, $p_b = p_c = 0.25$.
+Decompress the first 4 symbols of the Arithmetic coded bit sequence: 10011.
+
+\solution
+
+Starting with $l_0 = 0$ and $s_0 = 1$, and given the cumulative probabilities
+$f_a =0$, $f_b = 0.5$ and $f_c = 0.75$, and that $v = (0.10011)_2 \equiv
+\frac{19}{32}$ we get that
+%
+\begin{enumerate}
+  \item $f_b \le (v - l_0)/s_0 < f_c \implies \text{\bf output } b$ \\
+  $s_1 = s_0 \times p_b = 0.25$ \\
+  $l_1 = l_0 + s_0 \times f_b = 0.5$
+  \item $f_a \le (v - l_1)/s_1 < f_b \implies \text{\bf output } a$ \\
+  $s_2 = s_1 \times p_a = 0.125$ \\
+  $l_2 = l_1 + s_1 \times f_a = 0.5$
+  \item $f_c \le (v - l_2)/s_2 \implies \text{\bf output } c$ \\
+  $s_3 = s_2 \times p_c = 0.03125$ \\
+  $l_3 = l_2 + s_2 \times f_c = 0.59375$
+  \item $f_a \le (v - l_3)/s_3 < f_b \implies \text{\bf output } a$
+\end{enumerate}
+%
+The decoded output is $baca$.
