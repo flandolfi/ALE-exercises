@@ -1,0 +1,22 @@
+\exercise
+
+Prove that the height of a Skip List built on $n$ items is $O(\log n)$ on
+average.
+
+\solution
+
+The probability of a key $x$ to have at least $\ell$ copies on the skip lists
+(levels) is $$\mathbb{P}[L(x) \ge \ell] = 2^{-\ell},$$ since it means it has to
+toss a coin at least $\ell$ times and get head in the first $\ell$ throws. The
+probability that the \emph{skip lists} are at least $\ell$ is $$\mathbb{P}[L \ge
+\ell] = \mathbb{P}\Bigg[\bigvee_{x=1}^n L(x) \ge \ell\Bigg] \le \sum_{x=1}^n
+\mathbb{P}[L(x) \ge \ell] = n \cdot \mathbb{P}[L(x) \ge \ell] =
+\frac{n}{2^\ell}\ .$$ Then the average number of levels is
+%
+\begin{align*}
+  \mathbb{E}[L] &= \sum_{\ell \ge 1} \mathbb{P}[L \ge \ell] \\
+  &= \sum_{\ell = 1}^{\log n} \mathbb{P}[L \ge \ell] + \sum_{\ell \ge \log n + 1} \mathbb{P}[L \ge \ell] \\
+  &\le \sum_{\ell = 1}^{\log n} 1 + \sum_{\ell \ge \log n + 1} \frac{n}{2^\ell} \\
+  &= \log n + \sum_{i \ge 1} \frac{1}{2^i} \\
+  &= \log n + 2\ .
+\end{align*}
