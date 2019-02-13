@@ -10,13 +10,13 @@ TOPICS=(
     "06_set_intersection=Set Intersection"
     "07_sorting_strings=Sorting Strings"
     "08_the_dictionary_problem=The Dictionary Problem"
-    "E2_randomised_data_structures=Randomized Data Structures"
     "09_searching_strings_by_prefix=Searching Strings by Prefix"
     "10_searching_strings_by_substring=Searching Strings by Substring"
     "11_integer_coding=Integer Coding"
     "12_statistical_coding=Statistical Coding"
     "13_dictionary_based_compressors=Dictionary-Based Compressors"
     "14_the_borrows_wheeler_transform=The Borrows-Wheeler Transform"
+    "E2_randomised_data_structures=Randomized Data Structures"
 )
 
 OUT="% --------------- DO NOT EDIT --------------- %\\n% This file has been automatically generated. %\\n\\n"
