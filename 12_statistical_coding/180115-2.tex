@@ -1,0 +1,17 @@
+\exercise
+
+Prove that the output of the Arithmetic coding algorithm is close to the
+empirical entropy of a text having length $n$ symbols.
+
+\solution
+
+Given the output dimension $d$ of Arithmetic coding, $$d = \left\lceil\log_2
+\frac{2}{s_n} \right\rceil \le 2 - \log_2 s_n = 2 - \log_2 \prod_{i=1}^n
+\mathbb{P}\big[T[i]\big] = 2 - \sum_{i = 1}^n \log_2 \mathbb{P}\big[T[i]\big]\
+,$$ if we let $n_\sigma$ the number of occurrences of the character $\sigma$ in
+the text $T$, we can rewrite the previous summation by iterating over the
+alphabet, obtaining $$2 - \sum_{\sigma \in \Sigma}
+n_\sigma\log_2\mathbb{P}[\sigma] = 2 - n\left( \sum_{\sigma \in \Sigma}
+\frac{n_\sigma}{n} \log_2 \mathbb{P}[\sigma] \right) \approx 2 - n\left(
+\sum_{\sigma \in \Sigma} \mathbb{P}[\sigma] \log_2 \mathbb{P}[\sigma]\right) = 2
++ n\mathcal{H}_0\ .$$
